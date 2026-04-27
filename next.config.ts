@@ -1,13 +1,20 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export",
+  trailingSlash: false,
   images: {
-    unoptimized: true,
     remotePatterns: [
       {
+        protocol: "http",
+        hostname: "*",
+        port: "",
+        pathname: "/**",
+      },
+      {
         protocol: "https",
-        hostname: "**",
+        hostname: "*",
+        port: "",
+        pathname: "/**",
       },
     ],
   },
