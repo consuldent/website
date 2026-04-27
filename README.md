@@ -12,7 +12,6 @@ The goal is to simulate how real-world modern websites are built using animation
 
 ---
 
-
 ## ✨ Features
 
 - 🎯 Smooth scroll-based animations
