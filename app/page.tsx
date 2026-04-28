@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div>
       <Hero />
-      <MarqueeText text="Practice Growth · AI Systems · Team Training · Patient Experience · Measurable Results" />
+      <MarqueeText text="Practice Growth · AI Systems · Team Training · Patient Experience · Measurable Results" speed={40} />
       <Expertise />
       <Stats />
       <Content />

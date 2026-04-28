@@ -48,7 +48,7 @@ const Navbar = () => {
     <div className="relative container mx-auto px-2 md:px-0">
       <div className="flex items-center justify-between gap-2 py-3 w-full">
         <Link href="/" className="z-50 flex items-center">
-          <Image src="/logo.png" alt="Consuldent" width={144} height={40} className="w-36 h-auto" priority />
+          <Image src="/logo.png" alt="Consuldent" width={144} height={40} className="w-36" style={{ height: 'auto' }} priority />
         </Link>
 
         <div className="hidden md:flex gap-3 p-2 px-1 rounded-2xl bg-white">

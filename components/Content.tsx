@@ -11,8 +11,8 @@ gsap.registerPlugin(ScrollTrigger);
 const contents = [
   {
     id: 1,
-    image: "/image/content/content1.avif",
-    video: "/videos/content/Bullit _ Loop.mp4",
+    image: "/image/content/loopimg3.png",
+    video: "/videos/content/loop3.mp4",
     title: "From $800K to $2M in 90 days",
     buttonText: "Transformation",
     bgColor: "#0A3D91",
@@ -20,8 +20,8 @@ const contents = [
   },
   {
     id: 2,
-    image: "/image/content/content2.avif",
-    video: "/videos/content/loco-bites-loop.mp4",
+    image: "/image/content/loopimg2.png",
+    video: "/videos/content/loop2.mp4",
     title: "Systems that work while you sleep",
     buttonText: "Automation",
     bgColor: "#10B981",
@@ -29,8 +29,8 @@ const contents = [
   },
   {
     id: 3,
-    image: "/image/content/content3.avif",
-    video: "/videos/content/roasta-loop.mp4",
+    image: "/image/content/loopimg1.png",
+    video: "/videos/content/loop1.mp4",
     title: "Front desk trained, patients converted",
     buttonText: "Training",
     bgColor: "#00C4CC",
@@ -143,6 +143,8 @@ const Content = () => {
               fill
               className="object-cover"
               alt={content?.title}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
+              loading={index === 0 ? "eager" : "lazy"}
             />
             
             {/* video overlay */}

@@ -2,8 +2,7 @@
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-// images
-import image1 from "@/public/image1.webp";
+
 // icons
 import { ArrowRight, ArrowDown } from "lucide-react";
 import Link from "next/link";
@@ -324,7 +323,7 @@ const Hero = () => {
       {/* image banner bottom section  */}
       <div className="mt-16 space-y-5 md:space-y-0 md:flex items-center justify-center gap-5">
         <div className="w-100 rounded-xl overflow-hidden">
-          <Image src={image1} className="w-full" alt="image" />
+          <video src="/videos/hero1.mp4" autoPlay loop muted className="w-full" />
         </div>
         {/* text  */}
         <div className="relative md:ml-32">
@@ -339,37 +338,13 @@ const Hero = () => {
               ref={leerButtonRef}
               onMouseEnter={handleLeerbuttonMouseEnter}
               onMouseLeave={handleLeerbuttonMouseLeave}
-              className="flex items-center gap-2 border border-gray-500 rounded-lg px-4 py-2 text-sm font-medium cursor-pointer bg-white w-fit"
+              className="flex items-center gap-2 border border-gray-500 rounded-lg px-4 py-2 text-sm font-medium cursor-pointer bg-white w-fit mt-6"
             >
               Meet the Team
               <ArrowRight className="w-4 h-4" />
             </Link>
           </MagneticButton>
 
-          {/* down arrow button  */}
-          <button
-            onMouseEnter={handleArrowMouseEnter}
-            onMouseLeave={handleArrowMouseLeave}
-            className="absolute right-32 bottom-10 border border-gray-400 p-2 rounded-xl overflow-hidden w-10 h-10 flex items-center justify-center cursor-pointer"
-          >
-            {/* wrapper */}
-            <div className="relative w-full h-full overflow-hidden">
-              {/* default icon */}
-              <div
-                ref={topIconRef}
-                className="absolute inset-0 flex items-center justify-center"
-              >
-                <ArrowDown className="w-5 h-5 text-orange-700" />
-              </div>
-              {/* animated icon */}
-              <div
-                ref={bottomIconRef}
-                className="absolute inset-0 flex items-center justify-center translate-y-full"
-              >
-                <ArrowDown className="w-5 h-5 text-orange-700" />
-              </div>
-            </div>
-          </button>
         </div>
       </div>
     </div>
