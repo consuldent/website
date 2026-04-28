@@ -1,5 +1,18 @@
+import { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CheckCircle } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Services - Consuldent",
+  description:
+    "Dental practice consulting services: Tech & AI, Customer Experience, and Training. PMS optimisation, AI chatbots, phone scripts, team training. Results in 90 days.",
+  openGraph: {
+    title: "Services - Consuldent",
+    description:
+      "Dental practice consulting services: Tech & AI, Customer Experience, and Training. Results in 90 days.",
+    url: "https://consuldent.com.au/services",
+  },
+};
 
 const services = [
   {

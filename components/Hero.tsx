@@ -1,12 +1,13 @@
 "use client";
 import gsap from "gsap";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 // images
 import image1 from "@/public/image1.webp";
 // icons
 import { ArrowRight, ArrowDown } from "lucide-react";
 import Link from "next/link";
+import MagneticButton from "./MagneticButton";
 
 const cards = [
   {
@@ -42,9 +43,41 @@ const cards = [
 const Hero = () => {
   const cardRef = useRef<(HTMLDivElement | null)[]>([]);
   const leerButtonRef = useRef<HTMLAnchorElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
   // arrow icons
   const topIconRef = useRef<HTMLDivElement>(null);
   const bottomIconRef = useRef<HTMLDivElement>(null);
+
+  // text reveal on mount
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".hero-title-line", {
+        y: 80,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.15,
+        ease: "power3.out",
+      });
+      gsap.from(subtitleRef.current, {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        delay: 0.5,
+        ease: "power3.out",
+      });
+      gsap.from(".hero-card", {
+        y: 60,
+        opacity: 0,
+        rotation: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        delay: 0.6,
+        ease: "power3.out",
+      });
+    });
+    return () => ctx.revert();
+  }, []);
 
   // handle mouse enter on card
   const handleMouseEnter = (index: number) => {
@@ -148,26 +181,29 @@ const Hero = () => {
 
   return (
     <div className="container mx-auto py-5 md:py-12 px-2 md:px-0 overflow-hidden">
-      {/* desktop titie  */}
-      <div className="space-y-8 hidden md:block">
-        <p className="text-4xl md:text-8xl font-bold">
-          Where Dental Practices <br /> Grow.
+      {/* desktop title  */}
+      <div ref={titleRef} className="space-y-8 hidden md:block overflow-hidden">
+        <p className="text-4xl md:text-8xl font-bold hero-title-line">
+          Where Dental Practices
         </p>
-        <p className="text-2xl font-semibold">
+        <p className="text-4xl md:text-8xl font-bold hero-title-line">
+          Grow.
+        </p>
+        <p ref={subtitleRef} className="text-2xl font-semibold">
           Stop leaving money on the table. Start scaling your clinic.
         </p>
       </div>
       {/* mobile title  */}
       <div className="md:hidden">
-        <h2 className="text-5xl font-semibold">Where Dental Practices</h2>
-        <h2 className="text-5xl font-semibold">Grow.</h2>
+        <h2 className="text-5xl font-semibold hero-title-line">Where Dental Practices</h2>
+        <h2 className="text-5xl font-semibold hero-title-line">Grow.</h2>
         <p className="text-2xl font-semibold mt-5">
           Stop leaving money on the table. Start scaling your clinic.
         </p>
       </div>
 
       {/* ===========
-      desktop cards 
+      desktop cards
       ================= */}
       <div className="hidden md:flex items-center justify-start mt-10 rotate-1 w-full">
         {cards.map((card, index) => {
@@ -181,7 +217,7 @@ const Hero = () => {
                 }}
                 onMouseEnter={() => handleMouseEnter(index)}
                 onMouseLeave={handleMouseLeave}
-                className={`relative w-full p-4 rounded-4xl h-96 flex flex-col justify-between overflow-hidden ${
+                className={`hero-card relative w-full p-4 rounded-4xl h-96 flex flex-col justify-between overflow-hidden ${
                   index === lastIndex
                     ? "-rotate-12"
                     : index === 1
@@ -208,7 +244,7 @@ const Hero = () => {
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={handleMouseLeave}
               style={{ backgroundColor: card.bgColor }}
-              className={`w-full p-4 rounded-4xl h-96 flex flex-col justify-between  ${
+              className={`hero-card w-full p-4 rounded-4xl h-96 flex flex-col justify-between  ${
                 index === 0 ? "rotate-3" : index === 2 ? "-rotate-6" : ""
               } ${card.textColor || ""}`}
             >
@@ -296,17 +332,19 @@ const Hero = () => {
             We don't just advise. We implement. AI chatbots, recall systems, phone scripts, PMS optimisation — all measured, all working while you focus on patients.
           </p>
 
-          {/* leet ons kennen button  */}
-          <Link
-            href="/about"
-            ref={leerButtonRef}
-            onMouseEnter={handleLeerbuttonMouseEnter}
-            onMouseLeave={handleLeerbuttonMouseLeave}
-            className="flex items-center gap-2 border border-gray-500 rounded-lg px-4 py-2 text-sm font-medium cursor-pointer bg-white w-fit"
-          >
-            Meet the Team
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          {/* meet the team button */}
+          <MagneticButton>
+            <Link
+              href="/about"
+              ref={leerButtonRef}
+              onMouseEnter={handleLeerbuttonMouseEnter}
+              onMouseLeave={handleLeerbuttonMouseLeave}
+              className="flex items-center gap-2 border border-gray-500 rounded-lg px-4 py-2 text-sm font-medium cursor-pointer bg-white w-fit"
+            >
+              Meet the Team
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </MagneticButton>
 
           {/* down arrow button  */}
           <button

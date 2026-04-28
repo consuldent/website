@@ -1,9 +1,12 @@
 "use client";
 import Image from "next/image";
 import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const contents = [
   {
@@ -37,6 +40,34 @@ const contents = [
 
 const Content = () => {
   const cardRef = useRef<HTMLDivElement[]>([]);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".content-title", {
+        y: 60,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+        },
+      });
+      gsap.from(".content-card", {
+        y: 80,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".content-card",
+          start: "top 80%",
+        },
+      });
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
 
   const handleCardMouseEnter = (index: number) => {
     const card = cardRef.current[index];
@@ -77,9 +108,9 @@ const Content = () => {
   };
 
   return (
-    <div className="container mx-auto py-16 px-2">
+    <div ref={sectionRef} className="container mx-auto py-16 px-2">
       {/* content  */}
-      <div className="space-y-4 md:px-20">
+      <div className="content-title space-y-4 md:px-20">
         <h2 className="text-3xl md:text-7xl font-bold">
           Results <br /> you can measure.
         </h2>
@@ -102,7 +133,7 @@ const Content = () => {
             onMouseEnter={() => handleCardMouseEnter(index)}
             onMouseLeave={() => handleCardMouseLeave(index)}
             key={index}
-            className={`relative aspect-[4/5] md:aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer ${
+            className={`content-card relative aspect-[4/5] md:aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer ${
               index === 1 ? "md:-mt-28" : index === 2 ? "md:-mt-48" : ""
             }`}
           >
