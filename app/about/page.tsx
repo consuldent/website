@@ -21,7 +21,7 @@ const team = [
     role: 'Founder & Principal Consultant',
     bio: 'With over a decade of clinical and practice management experience across multiple dental practices in Australia, Dr Vrinda brings a rare dual perspective — she\'s been both the dentist in the chair and the manager behind the desk. Her expertise spans clinical operations, patient journey design, and team performance optimisation. She founded Consuldent on a simple premise: great dentistry shouldn\'t mean complicated business.',
     image: '/vrinda.jpg',
-    linkedin: 'https://linkedin.com',
+    linkedin: 'https://www.linkedin.com/in/dr-vrinda-vashisht-ba06ab27a/',
     specialties: ['Practice Management', 'Clinical Operations', 'Patient Experience'],
   },
   {
@@ -29,7 +29,7 @@ const team = [
     role: 'Chief Technology Officer',
     bio: 'A technology strategist with deep expertise in AI automation, cloud infrastructure, and system integration. Dhruv has built and scaled technology solutions across multiple industries and startups. At Consuldent, he architects the tech stack that powers practice growth — from PMS optimisation and AI chatbots to automated recall systems and data dashboards that actually tell you something useful.',
     image: '/dhruv.jpeg',
-    linkedin: 'https://linkedin.com',
+    linkedin: 'https://www.linkedin.com/in/oberoi-dhruv/',
     specialties: ['AI & Automation', 'System Integration', 'Data Analytics'],
   },
   {
@@ -37,7 +37,7 @@ const team = [
     role: 'Head of Growth & Marketing',
     bio: 'An ex-IBM strategist with extensive experience in business development and marketing across multiple industries. Jeremy brings enterprise-grade thinking to dental practice growth. He specialises in patient acquisition funnels, Google Business optimisation, and building marketing systems that deliver measurable ROI — not vanity metrics.',
     image: '/jeremy.png',
-    linkedin: 'https://linkedin.com',
+    linkedin: 'https://www.linkedin.com/in/jeremy-ciaora/',
     specialties: ['Growth Strategy', 'Digital Marketing', 'Patient Acquisition'],
   },
 ];
@@ -132,7 +132,7 @@ export default function AboutPage() {
         </div>
 
         {/* Team */}
-        <div className="mb-16">
+        <div className="mb-2">
           <h2 className="text-3xl font-bold text-[#0A3D91] mb-8">
             Meet the Team
           </h2>
@@ -182,22 +182,6 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* CTA */}
-        <div className="text-center bg-[#0A3D91] rounded-3xl p-12 text-white">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to grow your practice?
-          </h2>
-          <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
-            Book a free 30-minute consultation. We&apos;ll audit your practice
-            and show you exactly where the revenue is hiding.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-[#10B981] text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-[#10B981]/90 transition-colors"
-          >
-            Book a Free Call
-          </Link>
-        </div>
       </div>
     </main>
   );
