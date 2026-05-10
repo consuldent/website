@@ -6,11 +6,18 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const stats = [
+interface Stat {
+  value: number;
+  suffix: string;
+  label: string;
+  prefix?: string;
+}
+
+const stats: Stat[] = [
   { value: 90, suffix: "days", label: "To Measurable Results" },
-  { value: 50, prefix: "$", suffix: "K+", label: "Avg Revenue Unlocked" },
+  { value: 2, prefix: "", suffix: "x", label: "Phone Conversion Improvement" },
   { value: 100, suffix: "%", label: "Implementation Rate" },
-  { value: 3, suffix: "x", label: "ROI on Average" },
+  { value: 2, prefix: "", suffix: "+", label: "Hours Saved Daily" },
 ];
 
 const Stats = () => {
@@ -43,9 +50,7 @@ const Stats = () => {
             className="stat-item text-center p-6 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-shadow duration-300"
           >
             <div className="text-4xl md:text-5xl font-bold text-[#0A3D91] mb-2">
-              {stat.prefix}
-              {stat.value}
-              {stat.suffix}
+              {stat.prefix || ''}{stat.value}{stat.suffix}
             </div>
             <p className="text-gray-600 text-sm font-medium">{stat.label}</p>
           </div>

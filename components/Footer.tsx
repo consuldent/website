@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Mail } from "lucide-react";
 
-import { FaLinkedin, FaTiktok, FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaLinkedin, FaInstagram } from "react-icons/fa";
 
 const menus = [
   { id: 1, name: "Services", path: "/services" },
@@ -76,21 +76,15 @@ const Footer = () => {
               ))}
             </div>
 
-            {/* follow us - unlinked as requested */}
+            {/* follow us */}
             <div className="flex items-center justify-start gap-3">
-              <h2 className="text-sm">Follow us</h2>
-              <span className="bg-white text-sm rounded-full p-1.5">
+              <h2 className="text-sm font-semibold text-[#0A3D91]">Follow us</h2>
+              <a href="https://www.linkedin.com/company/consuldent" target="_blank" rel="noopener noreferrer" className="bg-[#0A3D91] text-white text-sm rounded-full p-2 hover:bg-[#0A3D91]/80 transition-colors">
                 <FaLinkedin className="w-4 h-4" />
-              </span>
-              <span className="bg-white text-sm rounded-full p-1.5">
-                <FaTiktok className="w-4 h-4" />
-              </span>
-              <span className="bg-white text-sm rounded-full p-1.5">
+              </a>
+              <a href="https://www.instagram.com/consuldent" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm rounded-full p-2 hover:opacity-80 transition-opacity">
                 <FaInstagram className="w-4 h-4" />
-              </span>
-              <span className="bg-white text-sm rounded-full p-1.5">
-                <FaYoutube className="w-4 h-4" />
-              </span>
+              </a>
             </div>
           </div>
 

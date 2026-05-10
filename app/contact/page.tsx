@@ -5,6 +5,45 @@ import { Mail, MapPin, ArrowRight } from 'lucide-react';
 import { db } from '@/lib/firebase';
 import { collection, addDoc } from 'firebase/firestore/lite';
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long until I see results?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most dental practices see measurable results within 90 days. Technology implementations typically show immediate efficiency gains, while team training takes effect within the first few weeks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What size practice do you work with?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We work with dental practices of all sizes, from single-chair practices to multi-location operations. Our programs are tailored to your specific needs and growth goals."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer remote consultations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! We offer virtual consultations and training for dental practices across Australia. On-site engagements are available for Melbourne-based practices."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's included in the initial audit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our comprehensive audit covers your PMS setup, workflows, patient journey, team performance, and technology stack. You'll receive a detailed report with actionable recommendations."
+      }
+    }
+  ]
+};
+
 export default function ContactPage() {
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -13,6 +52,8 @@ export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
+    practiceName: '',
     message: '',
     host: 'consuldent.com.au',
     type: 'contact',
@@ -36,11 +77,13 @@ export default function ContactPage() {
         created: new Date().toISOString(),
       });
 
-      setSuccessMessage('Thank you! We will be in touch about the next steps.');
+      setSuccessMessage('Thank you for your inquiry. We will review your message and be in touch within 24 hours.');
 
       setFormData({
         name: '',
         email: '',
+        phone: '',
+        practiceName: '',
         message: '',
         host: 'consuldent.com.au',
         type: 'contact',
@@ -48,18 +91,22 @@ export default function ContactPage() {
       });
     } catch (e) {
       console.error('Error adding document: ', e);
-      setErrorMessage('This is a bit inconvenient. Could you please reach out to us at hello@consuldent.com.au instead ^_^');
+      setErrorMessage('Something went wrong. Please email us directly at hello@consuldent.com.au');
     }
     setLoading(false);
   };
 
   return (
     <main className="bg-[#FAF4EC]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <div className="container mx-auto py-16 px-4">
         {/* Header */}
         <div className="mb-16">
           <h1 className="text-5xl md:text-8xl font-bold text-[#0A3D91] mb-6">
-            🦷 Contact
+            Get in Touch
           </h1>
           <p className="text-xl md:text-2xl text-gray-700 max-w-3xl">
             Ready to transform your dental practice? Let&apos;s talk about what you need and how we can help.
@@ -94,32 +141,57 @@ export default function ContactPage() {
 
             {/* Contact Form */}
             <form onSubmit={handleSubmit} className="mt-8 space-y-4">
-              <div>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Name"
-                  className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#0A3D91] bg-white"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Your Name *"
+                    className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#0A3D91] bg-white"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div>
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Phone Number *"
+                    className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#0A3D91] bg-white"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
               </div>
-              <div>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#0A3D91] bg-white"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address *"
+                    className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#0A3D91] bg-white"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    name="practiceName"
+                    placeholder="Practice Name"
+                    className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#0A3D91] bg-white"
+                    value={formData.practiceName}
+                    onChange={handleChange}
+                  />
+                </div>
               </div>
               <div>
                 <textarea
                   name="message"
-                  placeholder="Message"
+                  placeholder="How can we help your practice? *"
                   rows={4}
                   className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#0A3D91] bg-white"
                   value={formData.message}
@@ -129,10 +201,10 @@ export default function ContactPage() {
               </div>
               <button
                 type="submit"
-                className="w-full px-6 py-3 bg-[#0A3D91] text-white font-bold rounded-lg hover:bg-[#0A3D91]/90 transition-colors disabled:opacity-50"
+                className="w-full px-6 py-4 bg-[#0A3D91] text-white font-bold rounded-lg hover:bg-[#0A3D91]/90 transition-colors disabled:opacity-50"
                 disabled={loading}
               >
-                {loading ? 'Sending...' : 'Send Message'}
+                {loading ? 'Sending...' : 'Request Free Consultation'}
               </button>
               {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
               {successMessage && (

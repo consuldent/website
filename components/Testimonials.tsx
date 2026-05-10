@@ -10,23 +10,23 @@ const testimonials = [
   {
     id: 1,
     name: "Dr Sarah Mitchell",
-    role: "Principal Dentist, Bayside Dental",
+    role: "Principal Dentist, Melbourne",
     comment:
-      "Consuldent transformed our practice in ways I didn't think possible. Within 60 days, our phone conversion rate doubled and our recall system actually works. Dr Vrinda understands dentistry — she's been in the chair.",
+      "Consuldent transformed our practice operations. Our phone conversion rate improved significantly and the recall system actually works now. Dr Vrinda genuinely understands dentistry — she's been in the chair.",
   },
   {
     id: 2,
     name: "James Thornton",
-    role: "Practice Manager, Melbourne Dental Group",
+    role: "Practice Manager, Victoria",
     comment:
-      "The AI chatbot alone paid for the entire engagement in the first month. But it was the team training that made the real difference. Our front desk team now converts like professionals.",
+      "The AI chatbot implementation alone delivered immediate value. But it was the team training that made the real difference. Our front desk team now handles patient enquiries with confidence and professionalism.",
   },
   {
     id: 3,
     name: "Dr Anita Patel",
-    role: "Owner, Glen Iris Family Dental",
+    role: "Owner, Private Dental Practice",
     comment:
-      "We went from $800K to $1.4M in annual revenue within 90 days. Not by working harder — by having better systems. The PMS optimisation freed up 2 hours a day for the clinical team.",
+      "We now have systems that actually stick. The PMS optimisation streamlined our workflows and freed up valuable clinical time. The team training created a culture of accountability and excellence.",
   },
 ];
 

@@ -15,6 +15,10 @@ export const metadata: Metadata = {
   title: "Consuldent | Where Dental Practices Grow",
   description:
     "Dental practice consulting powered by AI. Results in 90 days. PMS optimisation, automation, training for dental practices in Melbourne.",
+  metadataBase: new URL("https://consuldent.com.au"),
+ alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: "/favicons/favicon.ico",
     apple: "/favicons/apple-touch-icon.png",
@@ -33,34 +37,78 @@ export const metadata: Metadata = {
     locale: "en_AU",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Consuldent | Where Dental Practices Grow",
+    description: "Dental practice consulting powered by AI. Results in 90 days.",
+  },
   other: {
-    "msapplication-TileColor": "#ffffff",
-    "theme-color": "#ffffff",
+    "msapplication-TileColor": "#0A3D91",
+    "theme-color": "#0A3D91",
   },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: "Consuldent",
-  description:
-    "Dental practice consulting powered by AI. Results in 90 days. PMS optimisation, automation, training for dental practices in Melbourne.",
-  url: "https://consuldent.com.au",
-  email: "hello@consuldent.com.au",
-  address: {
+  "@type": "ProfessionalService",
+  "name": "Consuldent",
+  "alternateName": "Consuldent Dental Practice Consulting",
+  "description": "Dental practice consulting powered by AI. Results in 90 days. PMS optimisation, automation, training for dental practices in Melbourne.",
+  "url": "https://consuldent.com.au",
+  "logo": "https://consuldent.com.au/logo.png",
+  "image": "https://consuldent.com.au/logo.png",
+  "email": "hello@consuldent.com.au",
+  "telephone": "+61-400-000-000",
+  "address": {
     "@type": "PostalAddress",
-    addressLocality: "Melbourne",
-    addressRegion: "VIC",
-    addressCountry: "AU",
+    "streetAddress": "Melbourne, VIC",
+    "addressLocality": "Melbourne",
+    "addressRegion": "VIC",
+    "postalCode": "3000",
+    "addressCountry": "AU"
   },
-  areaServed: ["VIC", "NSW", "QLD"],
-  serviceType: [
+  "areaServed": {
+    "@type": "StateOrCountry",
+    "name": "Victoria, Australia"
+  },
+  "priceRange": "$$$",
+  "openingHours": "Mo-Fr 09:00-18:00",
+  " foundingDate": "2024",
+  "founders": [
+    {
+      "@type": "Person",
+      "name": "Dr Vrinda Vashisht",
+      "jobTitle": "Founder & Principal Consultant"
+    }
+  ],
+  "employee": [
+    {
+      "@type": "Person",
+      "name": "Dr Vrinda Vashisht",
+      "jobTitle": "Founder & Principal Consultant"
+    },
+    {
+      "@type": "Person",
+      "name": "Dhruv Oberoi",
+      "jobTitle": "Chief Technology Officer"
+    },
+    {
+      "@type": "Person",
+      "name": "Jeremy Ciaora",
+      "jobTitle": "Head of Growth & Marketing"
+    }
+  ],
+  "sameAs": [
+    "https://www.linkedin.com/company/consuldent",
+    "https://www.instagram.com/consuldent"
+  ],
+  "serviceType": [
     "Dental Practice Consulting",
     "PMS Optimisation",
     "AI Automation",
     "Team Training",
-    "Patient Experience",
-  ],
+    "Patient Experience"
+  ]
 };
 
 export default function RootLayout({

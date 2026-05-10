@@ -13,7 +13,7 @@ const contents = [
     id: 1,
     image: "/image/content/loopimg3.png",
     video: "/videos/content/loop3.mp4",
-    title: "From $800K to $2M in 90 days",
+    title: "Transformation that scales",
     buttonText: "Transformation",
     bgColor: "#0A3D91",
     textColor: "text-white",

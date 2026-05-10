@@ -1,0 +1,17 @@
+# Consuldent Robots.txt
+# https://consuldent.com.au
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://consuldent.com.au/sitemap.xml
+
+# Crawl-delay (be nice to server)
+Crawl-delay: 1
+
+# Common paths to exclude
+Disallow: /api/
+Disallow: /_next/
+Disallow: /*.json$
+Disallow: /*.xml$

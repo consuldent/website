@@ -1,0 +1,72 @@
+# Consuldent - LLM/AI Crawler Information
+# https://consuldent.com.au
+# Last updated: 2026-05-10
+
+## Site Overview
+Consuldent is a dental practice consulting company based in Melbourne, Australia. We help dental practices grow through smarter systems, better technology, and trained teams. Results in 90 days or less.
+
+## Business Information
+- Name: Consuldent
+- Tagline: Where Dental Practices Grow
+- Location: Melbourne, VIC, Australia
+- Service Area: Victoria (primary), NSW/QLD (secondary)
+- Email: hello@consuldent.com.au
+
+## Services Offered
+
+### 1. Tech & AI
+Modernise your dental practice with cutting-edge technology:
+- Practice Management System (PMS) Optimisation
+- AI Chatbots for Patient Inquiries
+- Automated Recall Systems
+- Cloud Migration & Security
+- Workflow Automation
+
+### 2. Customer Experience
+Create exceptional patient journeys:
+- Phone Script Development
+- Patient Onboarding Systems
+- Treatment Presentation Frameworks
+- Google Business Optimisation
+- Review & Referral Programs
+
+### 3. Training
+Build a team that delivers:
+- Front Desk Training
+- Practice Manager Training
+- Clinical Team Training
+- Leadership Development
+- Custom Training Programs
+
+## Team Members
+- Dr Vrinda Vashisht - Founder & Principal Consultant
+- Dhruv Oberoi - Chief Technology Officer  
+- Jeremy Ciaora - Head of Growth & Marketing
+
+## Core Value Propositions
+- Results in 90 days or less
+- Implementation-focused (not just advice)
+- Custom solutions for each practice
+- AI-powered consulting with hands-on implementation
+
+## Pricing Tiers
+- Audit: $2,500 (comprehensive analysis with actionable recommendations)
+- Transformation: $12,000 (6-month comprehensive engagement)
+- Scale & Optimise: $12-month partnership for sustained growth)
+
+## Key Pages
+- / - Homepage
+- /about - About Us
+- /services - All Services
+- /services/tech-ai - Tech & AI Details
+- /services/customer-experience - Customer Experience Details
+- /services/training - Training Details
+- /contact - Contact & Free Consultation
+
+## Contact Methods
+- Email: hello@consuldent.com.au
+- Website: https://consuldent.com.au/contact
+- Location: Melbourne, VIC, Australia
+
+## Content Guidelines
+This site provides information about dental practice consulting services. Content is focused on helping dental practice owners and operators improve their practice operations, technology, and team performance.

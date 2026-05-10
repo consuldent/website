@@ -28,10 +28,11 @@ const services = [
       "Workflow Automation",
     ],
     color: "#0A3D91",
+    link: "/services/tech-ai",
   },
   {
     id: 2,
-    title: "📞 Customer Experience",
+    title: "Customer Experience",
     description: "Create exceptional patient journeys. We design the systems that turn first-time visitors into loyal patients who refer others.",
     features: [
       "Phone Script Development",
@@ -41,10 +42,11 @@ const services = [
       "Review & Referral Programs",
     ],
     color: "#10B981",
+    link: "/services/customer-experience",
   },
   {
     id: 3,
-    title: "📚 Training",
+    title: "Training",
     description: "Build a team that delivers. Virtual and on-site training for every role in your dental practice.",
     features: [
       "Front Desk Training",
@@ -54,8 +56,18 @@ const services = [
       "Custom Training Programs",
     ],
     color: "#00C4CC",
+    link: "/services/training",
   },
 ];
+
+interface Service {
+  id: number;
+  title: string;
+  description: string;
+  features: string[];
+  color: string;
+  link: string;
+}
 
 export default function ServicesPage() {
   return (
@@ -87,6 +99,12 @@ export default function ServicesPage() {
                   <p className="text-lg text-white/80 leading-relaxed">
                     {service.description}
                   </p>
+                  <Link
+                    href={service.link}
+                    className="inline-flex items-center gap-2 mt-6 text-white font-semibold hover:underline"
+                  >
+                    Learn more <ArrowRight className="w-5 h-5" />
+                  </Link>
                 </div>
                 <div className="lg:w-2/3">
                   <ul className="space-y-4">
@@ -148,7 +166,7 @@ export default function ServicesPage() {
 
         {/* CTA */}
         <div className="mt-20 text-center">
-          <p className="text-xl text-gray-700 mb-6">Not sure where to start? Let's talk about your practice.</p>
+          <p className="text-xl text-gray-700 mb-6">Not sure where to start? Let&apos;s talk about your practice.</p>
           <Link
             href="/contact"
             className="inline-flex items-center gap-2 bg-[#0A3D91] text-white px-8 py-4 rounded-xl font-semibold text-lg"

@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { FaLinkedin, FaCheckCircle } from 'react-icons/fa';
-import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'About - Consuldent',

@@ -1,10 +1,9 @@
 "use client";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 
 // icons
-import { ArrowRight, ArrowDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import MagneticButton from "./MagneticButton";
 
@@ -12,10 +11,10 @@ const cards = [
   {
     id: 1,
     type: "text",
-    title: "$50K+",
+    title: "Systems",
     bgColor: "#0A3D91",
-    subTitle: "Monthly Revenue Left on Table",
-    text: "Most practices don't capture what they should",
+    subTitle: "That Actually Work",
+    text: "We implement what others only advise on. No strategies gathering dust.",
     textColor: "text-white",
   },
   {
@@ -29,7 +28,7 @@ const cards = [
     title: "90 Days",
     bgColor: "#10B981",
     subTitle: "To Measurable Results",
-    text: "Not 6-18 months like our competitors",
+    text: "See tangible improvements in your practice operations within 90 days.",
     textColor: "text-white",
   },
   {

@@ -7,5 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
     },
     sitemap: "https://consuldent.com.au/sitemap.xml",
+    host: "https://consuldent.com.au",
   };
 }
