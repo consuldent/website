@@ -25,7 +25,7 @@ const team = [
   },
   {
     name: 'Dhruv Oberoi',
-    role: 'Chief Technology Officer',
+    role: 'Head of Autonations & AI',
     bio: 'A technology strategist with deep expertise in AI automation, cloud infrastructure, and system integration. Dhruv has built and scaled technology solutions across multiple industries and startups. At Consuldent, he architects the tech stack that powers practice growth — from PMS optimisation and AI chatbots to automated recall systems and data dashboards that actually tell you something useful.',
     image: '/dhruv.jpeg',
     linkedin: 'https://www.linkedin.com/in/oberoi-dhruv/',
