@@ -87,16 +87,6 @@ const jsonLd = {
       "name": "Dr Vrinda Vashisht",
       "jobTitle": "Founder & Principal Consultant"
     },
-    {
-      "@type": "Person",
-      "name": "Dhruv Oberoi",
-      "jobTitle": "Chief Technology Officer"
-    },
-    {
-      "@type": "Person",
-      "name": "Jeremy Ciaora",
-      "jobTitle": "Head of Growth & Marketing"
-    }
   ],
   "sameAs": [
     "https://www.linkedin.com/company/consuldent",

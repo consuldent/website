@@ -23,22 +23,6 @@ const team = [
     linkedin: 'https://www.linkedin.com/in/dr-vrinda-vashisht-ba06ab27a/',
     specialties: ['Practice Management', 'Clinical Operations', 'Patient Experience'],
   },
-  {
-    name: 'Dhruv Oberoi',
-    role: 'Head of Autonations & AI',
-    bio: 'A technology strategist with deep expertise in AI automation, cloud infrastructure, and system integration. Dhruv has built and scaled technology solutions across multiple industries and startups. At Consuldent, he architects the tech stack that powers practice growth — from PMS optimisation and AI chatbots to automated recall systems and data dashboards that actually tell you something useful.',
-    image: '/dhruv.jpeg',
-    linkedin: 'https://www.linkedin.com/in/oberoi-dhruv/',
-    specialties: ['AI & Automation', 'System Integration', 'Data Analytics'],
-  },
-  {
-    name: 'Jeremy Ciaora',
-    role: 'Head of Growth & Marketing',
-    bio: 'An ex-IBM strategist with extensive experience in business development and marketing across multiple industries. Jeremy brings enterprise-grade thinking to dental practice growth. He specialises in patient acquisition funnels, Google Business optimisation, and building marketing systems that deliver measurable ROI — not vanity metrics.',
-    image: '/jeremy.png',
-    linkedin: 'https://www.linkedin.com/in/jeremy-ciaora/',
-    specialties: ['Growth Strategy', 'Digital Marketing', 'Patient Acquisition'],
-  },
 ];
 
 const values = [
@@ -135,7 +119,7 @@ export default function AboutPage() {
           <h2 className="text-3xl font-bold text-[#0A3D91] mb-8">
             Meet the Team
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-1 gap-8 place-items-center">
             {team.map((member) => (
               <div
                 key={member.name}
