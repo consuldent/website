@@ -32,12 +32,12 @@ const MarqueeText = ({ text, speed = 20, className = "" }: MarqueeTextProps) => 
   const repeatedText = Array(6).fill(text).join(" · ");
 
   return (
-    <div className={`overflow-hidden py-6 ${className}`}>
+    <div className={`overflow-hidden py-8 border-y border-line bg-paper/50 ${className}`}>
       <div ref={trackRef} className="flex whitespace-nowrap">
-        <span className="text-6xl md:text-8xl font-bold text-[#0A3D91]/10 px-4">
+        <span className="font-display text-4xl md:text-6xl font-medium text-ink/15 px-4">
           {repeatedText}
         </span>
-        <span className="text-6xl md:text-8xl font-bold text-[#0A3D91]/10 px-4">
+        <span className="font-display text-4xl md:text-6xl font-medium text-ink/15 px-4">
           {repeatedText}
         </span>
       </div>

@@ -36,7 +36,7 @@ export default function ArticleMeta({ date, author, tags = [], readingTime }: Ar
               <Link
                 key={tag}
                 href={`/blog/tags/${tag.toLowerCase().replace(/\s+/g, '-')}`}
-                className="text-[#0A3D91] hover:underline"
+                className="text-[#102032] hover:underline"
               >
                 #{tag}
               </Link>
@@ -49,7 +49,7 @@ export default function ArticleMeta({ date, author, tags = [], readingTime }: Ar
         <span>By </span>
         <Link
           href={`/blog/authors/${author.name.toLowerCase().replace(/\s+/g, '-')}`}
-          className="text-[#0A3D91] hover:underline"
+          className="text-[#102032] hover:underline"
         >
           {author.name}
         </Link>

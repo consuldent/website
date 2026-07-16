@@ -14,22 +14,27 @@ interface Stat {
 }
 
 const stats: Stat[] = [
-  { value: 90, suffix: "days", label: "To Measurable Results" },
-  { value: 2, prefix: "", suffix: "x", label: "Phone Conversion Improvement" },
-  { value: 100, suffix: "%", label: "Implementation Rate" },
-  { value: 2, prefix: "", suffix: "+", label: "Hours Saved Daily" },
+  { value: 90, suffix: " days", label: "To measurable results" },
+  { value: 2, prefix: "", suffix: "×", label: "Phone conversion improvement" },
+  { value: 100, suffix: "%", label: "Implementation rate" },
+  { value: 2, prefix: "", suffix: "+ hrs", label: "Saved daily" },
 ];
 
 const Stats = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReduced) return;
+
     const ctx = gsap.context(() => {
       gsap.from(".stat-item", {
-        y: 40,
+        y: 32,
         opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
+        duration: 0.7,
+        stagger: 0.12,
         ease: "power3.out",
         scrollTrigger: {
           trigger: containerRef.current,
@@ -42,21 +47,29 @@ const Stats = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="container mx-auto py-20 px-4">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-        {stats.map((stat) => (
-          <div
-            key={stat.label}
-            className="stat-item text-center p-6 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-shadow duration-300"
-          >
-            <div className="text-4xl md:text-5xl font-bold text-[#0A3D91] mb-2">
-              {stat.prefix || ''}{stat.value}{stat.suffix}
+    <section ref={containerRef} className="bg-ink">
+      <div className="container mx-auto py-16 md:py-20 px-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 md:gap-0">
+          {stats.map((stat, i) => (
+            <div
+              key={stat.label}
+              className={`stat-item text-center px-4 ${
+                i !== 0 ? "md:border-l md:border-white/15" : ""
+              }`}
+            >
+              <div className="font-display text-4xl md:text-6xl font-medium text-bone tabular-nums">
+                {stat.prefix || ""}
+                {stat.value}
+                <span className="text-accent-soft">{stat.suffix}</span>
+              </div>
+              <p className="mt-3 text-xs md:text-sm uppercase tracking-[0.14em] text-bone/55">
+                {stat.label}
+              </p>
             </div>
-            <p className="text-gray-600 text-sm font-medium">{stat.label}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

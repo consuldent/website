@@ -49,7 +49,7 @@ export default async function BlogArticle({ params }: Props) {
     const { frontMatter, source } = await getArticleBySlug(slug);
     
     return (
-      <div className="min-h-screen bg-[#FAF4EC] pt-32 pb-16">
+      <div className="min-h-screen bg-[#F5F0E8] pt-32 pb-16">
         <div className="max-w-4xl mx-auto px-6">
           <Article frontMatter={frontMatter} source={source} />
         </div>

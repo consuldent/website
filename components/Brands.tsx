@@ -37,9 +37,9 @@ const Brands = () => {
     };
   }, []);
   return (
-    <div className="py-16 md:py-20 overflow-hidden bg-[#FAF4EC]">
+    <div className="py-16 md:py-20 overflow-hidden bg-[#F5F0E8]">
       <div className="container mx-auto px-4 mb-8">
-        <h2 className="text-3xl md:text-5xl font-bold text-[#0A3D91]">
+        <h2 className="text-3xl md:text-5xl font-bold text-[#102032]">
           Trusted by dental practices<br />across Victoria
         </h2>
         <p className="text-lg text-gray-600 mt-4 max-w-xl">
@@ -53,7 +53,7 @@ const Brands = () => {
             key={index}
             className="whitespace-nowrap shrink-0"
           >
-            <span className="text-xl md:text-2xl font-semibold text-[#0A3D91] border-2 border-[#0A3D91] px-6 py-3 rounded-full">
+            <span className="text-xl md:text-2xl font-semibold text-[#102032] border-2 border-[#102032] px-6 py-3 rounded-full">
               {practice}
             </span>
           </div>

@@ -14,27 +14,21 @@ const contents = [
     image: "/image/content/loopimg3.png",
     video: "/videos/content/loop3.mp4",
     title: "Transformation that scales",
-    buttonText: "Transformation",
-    bgColor: "#0A3D91",
-    textColor: "text-white",
+    label: "Transformation",
   },
   {
     id: 2,
     image: "/image/content/loopimg2.png",
     video: "/videos/content/loop2.mp4",
     title: "Systems that work while you sleep",
-    buttonText: "Automation",
-    bgColor: "#10B981",
-    textColor: "text-white",
+    label: "Automation",
   },
   {
     id: 3,
     image: "/image/content/loopimg1.png",
     video: "/videos/content/loop1.mp4",
     title: "Front desk trained, patients converted",
-    buttonText: "Training",
-    bgColor: "#00C4CC",
-    textColor: "text-white",
+    label: "Training",
   },
 ];
 
@@ -43,26 +37,31 @@ const Content = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReduced) return;
+
     const ctx = gsap.context(() => {
       gsap.from(".content-title", {
-        y: 60,
+        y: 40,
         opacity: 0,
-        duration: 1,
+        duration: 0.8,
         ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 75%",
+          start: "top 78%",
         },
       });
       gsap.from(".content-card", {
-        y: 80,
+        y: 56,
         opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
+        duration: 0.7,
+        stagger: 0.14,
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".content-card",
-          start: "top 80%",
+          start: "top 82%",
         },
       });
     }, sectionRef);
@@ -71,60 +70,44 @@ const Content = () => {
 
   const handleCardMouseEnter = (index: number) => {
     const card = cardRef.current[index];
-    const cardVideo = card.querySelector(".cardVideo") as HTMLVideoElement;
-
+    if (!card) return;
+    const cardVideo = card.querySelector(".cardVideo") as HTMLVideoElement | null;
     if (cardVideo) {
-      cardVideo.play();
-    }
-
-    gsap.to(cardRef.current[index], {
-      skewX: 3,
-    });
-    if (cardVideo) {
-      gsap.to(cardVideo, {
-        opacity: 1,
-      });
+      cardVideo.play().catch(() => {});
+      gsap.to(cardVideo, { opacity: 1, duration: 0.4 });
     }
   };
 
   const handleCardMouseLeave = (index: number) => {
     const card = cardRef.current[index];
-    const cardVideo = card.querySelector(".cardVideo") as HTMLVideoElement;
-
+    if (!card) return;
+    const cardVideo = card.querySelector(".cardVideo") as HTMLVideoElement | null;
     if (cardVideo) {
       cardVideo.pause();
       cardVideo.currentTime = 0;
-    }
-
-    gsap.to(cardRef.current[index], {
-      skewX: 0,
-    });
-
-    if (cardVideo) {
-      gsap.to(cardVideo, {
-        opacity: 0,
-      });
+      gsap.to(cardVideo, { opacity: 0, duration: 0.4 });
     }
   };
 
   return (
-    <div ref={sectionRef} className="container mx-auto py-16 px-2">
-      {/* content  */}
-      <div className="content-title space-y-4 md:px-20">
-        <h2 className="text-3xl md:text-7xl font-bold">
-          Results <br /> you can measure.
-        </h2>
-        <p className="text-xl font-semibold md:w-1/3">
-          We build systems, not just strategies. Every engagement is tracked, every improvement visible.
-        </p>
-        <Link href="/about" className="inline-flex items-center gap-2 border border-gray-500 rounded-lg px-4 py-2 text-sm font-medium cursor-pointer bg-white w-fit">
+    <section ref={sectionRef} className="container mx-auto py-20 md:py-28 px-4">
+      <div className="content-title flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+        <div>
+          <p className="eyebrow mb-4">Proof, not promises</p>
+          <h2 className="font-display text-4xl md:text-6xl font-medium text-ink leading-[1.05]">
+            Results you can measure.
+          </h2>
+        </div>
+        <Link
+          href="/about"
+          className="luxury-link inline-flex items-center gap-1.5 text-sm font-medium text-ink"
+        >
           See our approach
           <ArrowRight className="w-4 h-4" />
         </Link>
       </div>
 
-      {/* content cards  */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {contents.map((content, index) => (
           <div
             ref={(el) => {
@@ -132,48 +115,45 @@ const Content = () => {
             }}
             onMouseEnter={() => handleCardMouseEnter(index)}
             onMouseLeave={() => handleCardMouseLeave(index)}
-            key={index}
-            className={`content-card relative aspect-[4/5] md:aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer ${
-              index === 1 ? "md:-mt-28" : index === 2 ? "md:-mt-48" : ""
-            }`}
+            key={content.id}
+            className="content-card group relative aspect-[4/5] rounded-2xl overflow-hidden border border-line cursor-pointer bg-bone"
           >
-            {/* image  */}
             <Image
               src={content.image}
               fill
               className="object-cover"
-              alt={content?.title}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
+              alt={content.title}
+              sizes="(max-width: 768px) 100vw, 33vw"
               loading={index === 0 ? "eager" : "lazy"}
             />
-            
-            {/* video overlay */}
+
             <video
-              src={content?.video}
-              className="cardVideo absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300"
+              src={content.video}
+              className="cardVideo absolute inset-0 w-full h-full object-cover opacity-0"
               loop
               muted
-              autoPlay
+              playsInline
             />
 
-            {/* text overlay */}
-            <div 
-              className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6"
-            >
-              <span className={`font-semibold text-sm mb-2 inline-block w-fit ${content.textColor}`}>
-                {content?.buttonText}
-              </span>
-              <h2 className={`text-2xl md:text-3xl font-bold ${content.textColor}`}>
-                {content?.title}
-              </h2>
-              <span className="absolute top-4 right-4 p-2 rounded-full bg-white text-gray-900">
-                <ArrowUpRight className="w-5 h-5" />
-              </span>
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/15 to-transparent flex flex-col justify-end p-6">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                <span className="eyebrow !text-accent-soft">
+                  {content.label}
+                </span>
+              </div>
+              <h3 className="font-display text-2xl md:text-3xl font-medium text-bone leading-tight">
+                {content.title}
+              </h3>
             </div>
+
+            <span className="absolute top-4 right-4 w-9 h-9 rounded-full bg-bone text-ink flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <ArrowUpRight className="w-4 h-4" />
+            </span>
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

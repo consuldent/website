@@ -20,7 +20,7 @@ export default async function BlogPage() {
   if (error) {
     console.error('Error fetching blog posts:', error);
     return (
-      <div className="min-h-screen bg-[#FAF4EC] pt-32 pb-16">
+      <div className="min-h-screen bg-[#F5F0E8] pt-32 pb-16">
         <div className="max-w-6xl mx-auto px-6">
           <h1 className="text-5xl font-bold mb-4">Blog</h1>
           <p className="text-gray-600">Error loading posts. Please try again later.</p>
@@ -30,7 +30,7 @@ export default async function BlogPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FAF4EC] pt-32 pb-16">
+    <div className="min-h-screen bg-[#F5F0E8] pt-32 pb-16">
       <div className="max-w-6xl mx-auto px-6">
         <h1 className="text-5xl font-bold mb-12">Blog</h1>
         

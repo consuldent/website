@@ -1,84 +1,120 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
+
+/*
+  Consuldent — "Ink & Bone" brand system
+  Matte, editorial, boutique-consultancy.
+  One ink, one bone surface, one accent (oxblood).
+*/
+@theme {
+  /* Surfaces */
+  --color-bone: #f5f0e8;      /* matte page background */
+  --color-paper: #fcfaf5;     /* elevated card surface */
+  --color-line: #ddd6ca;      /* hairline borders */
+
+  /* Ink */
+  --color-ink: #102032;       /* primary text / buttons / footer */
+  --color-ink-soft: #2a3a4d;  /* secondary headings */
+  --color-muted: #6a6157;     /* muted body text (warm grey) */
+
+  /* Accent — oxblood (single accent) */
+  --color-accent: #6e2230;
+  --color-accent-soft: #9a5560;
+
+  /* Type */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, "Times New Roman", serif;
+}
 
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: #FAF4EC;
-  font-family: 'Inter', sans-serif;
+  background-color: var(--color-bone);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background-color: #0A3D91;
-  color: white;
+  background-color: var(--color-accent);
+  color: #fff;
 }
 
 mark {
-  background-color: #EAE4D8;
+  background-color: var(--color-line);
   color: inherit;
 }
 
-/* Smooth page transitions */
+/* Editorial display heading helper */
+.font-display {
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+  letter-spacing: -0.01em;
+}
+
+/* Eyebrow / kicker label */
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* Short oxblood accent rule — recurring visual motif */
+.accent-rule {
+  display: inline-block;
+  width: 2.5rem;
+  height: 2px;
+  background-color: var(--color-accent);
+  margin-top: 0.5rem;
+}
+
+/* ---------- Motion ---------- */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-in-up {
-  animation: fadeInUp 0.8s ease-out forwards;
+  animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-/* Stagger children */
 .stagger-children > * {
   opacity: 0;
-  animation: fadeInUp 0.6s ease-out forwards;
+  animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
+.stagger-children > *:nth-child(1) { animation-delay: 0.08s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.16s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.24s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.32s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.40s; }
 
-.stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
-.stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
-.stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
-.stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
-.stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
-
-/* Text reveal animation */
 @keyframes textReveal {
-  from {
-    clip-path: inset(0 100% 0 0);
-  }
-  to {
-    clip-path: inset(0 0 0 0);
-  }
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
 }
-
 .text-reveal {
-  animation: textReveal 1s ease-out forwards;
+  animation: textReveal 0.9s cubic-bezier(0.77, 0, 0.18, 1) forwards;
 }
 
-/* Luxury link underline */
+/* Refined link underline */
 .luxury-link {
   position: relative;
   display: inline-block;
 }
-
 .luxury-link::after {
   content: '';
   position: absolute;
   bottom: -2px;
   left: 0;
   width: 0;
-  height: 2px;
-  background-color: #0A3D91;
-  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
-
 .luxury-link:hover::after {
   width: 100%;
 }
@@ -90,6 +126,18 @@ img {
 
 /* Focus styles for accessibility */
 :focus-visible {
-  outline: 2px solid #0A3D91;
-  outline-offset: 2px;
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }

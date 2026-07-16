@@ -27,7 +27,7 @@ const services = [
       "Cloud Migration & Security",
       "Workflow Automation",
     ],
-    color: "#0A3D91",
+    color: "#102032",
     link: "/services/tech-ai",
   },
   {
@@ -41,7 +41,7 @@ const services = [
       "Google Business Optimisation",
       "Review & Referral Programs",
     ],
-    color: "#10B981",
+    color: "#6E2230",
     link: "/services/customer-experience",
   },
   {
@@ -55,7 +55,7 @@ const services = [
       "Leadership Development",
       "Custom Training Programs",
     ],
-    color: "#00C4CC",
+    color: "#102032",
     link: "/services/training",
   },
 ];
@@ -71,15 +71,15 @@ interface Service {
 
 export default function ServicesPage() {
   return (
-    <main className="bg-[#FAF4EC]">
+    <main className="bg-[#F5F0E8]">
       <div className="container mx-auto py-16 px-4">
         {/* Header */}
         <div className="mb-16">
-<h1 className="text-5xl md:text-8xl font-bold text-[#0A3D91] mb-6">
+<h1 className="text-5xl md:text-8xl font-bold text-[#102032] mb-6">
             Dental Services
           </h1>
           <p className="text-xl md:text-2xl text-gray-700 max-w-3xl">
-            Everything your dental practice needs to grow — from technology implementation to team training.
+            Everything your dental practice needs to grow: from technology implementation to team training.
           </p>
         </div>
 
@@ -123,40 +123,40 @@ export default function ServicesPage() {
 
         {/* Pricing Section */}
         <div className="mt-20">
-          <h2 className="text-3xl md:text-5xl font-bold text-[#0A3D91] mb-8">
+          <h2 className="text-3xl md:text-5xl font-bold text-[#102032] mb-8">
             Pricing
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-white rounded-2xl p-8 shadow-lg">
-              <h3 className="text-xl font-bold text-[#0A3D91] mb-2">Audit</h3>
-              <div className="text-4xl font-bold text-[#0A3D91] mb-4">$2,500</div>
+              <h3 className="text-xl font-bold text-[#102032] mb-2">Audit</h3>
+              <div className="text-4xl font-bold text-[#102032] mb-4">$2,500</div>
               <p className="text-gray-600 mb-6">Comprehensive analysis of your practice with actionable recommendations.</p>
               <Link
                 href="/contact"
-                className="flex items-center justify-center gap-2 bg-[#0A3D91] text-white p-3 rounded-xl font-semibold"
+                className="flex items-center justify-center gap-2 bg-[#102032] text-white p-3 rounded-xl font-semibold"
               >
                 Get Started <ArrowRight className="w-5 h-5" />
               </Link>
             </div>
-            <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-[#10B981]">
-              <div className="bg-[#10B981] text-white text-sm font-semibold px-3 py-1 rounded-full inline-block mb-4">Most Popular</div>
-              <h3 className="text-xl font-bold text-[#0A3D91] mb-2">Transformation</h3>
-              <div className="text-4xl font-bold text-[#0A3D91] mb-4">$12,000</div>
+            <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-[#6E2230]">
+              <div className="bg-[#6E2230] text-white text-sm font-semibold px-3 py-1 rounded-full inline-block mb-4">Most Popular</div>
+              <h3 className="text-xl font-bold text-[#102032] mb-2">Transformation</h3>
+              <div className="text-4xl font-bold text-[#102032] mb-4">$12,000</div>
               <p className="text-gray-600 mb-6">6-month comprehensive engagement with implementation and training.</p>
               <Link
                 href="/contact"
-                className="flex items-center justify-center gap-2 bg-[#10B981] text-white p-3 rounded-xl font-semibold"
+                className="flex items-center justify-center gap-2 bg-[#6E2230] text-white p-3 rounded-xl font-semibold"
               >
                 Get Started <ArrowRight className="w-5 h-5" />
               </Link>
             </div>
             <div className="bg-white rounded-2xl p-8 shadow-lg">
-              <h3 className="text-xl font-bold text-[#0A3D91] mb-2">Scale & Optimise</h3>
-              <div className="text-4xl font-bold text-[#0A3D91] mb-4">$25,000</div>
+              <h3 className="text-xl font-bold text-[#102032] mb-2">Scale & Optimise</h3>
+              <div className="text-4xl font-bold text-[#102032] mb-4">$25,000</div>
               <p className="text-gray-600 mb-6">12-month partnership for sustained growth and optimisation.</p>
               <Link
                 href="/contact"
-                className="flex items-center justify-center gap-2 bg-[#0A3D91] text-white p-3 rounded-xl font-semibold"
+                className="flex items-center justify-center gap-2 bg-[#102032] text-white p-3 rounded-xl font-semibold"
               >
                 Get Started <ArrowRight className="w-5 h-5" />
               </Link>
@@ -169,7 +169,7 @@ export default function ServicesPage() {
           <p className="text-xl text-gray-700 mb-6">Not sure where to start? Let&apos;s talk about your practice.</p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-[#0A3D91] text-white px-8 py-4 rounded-xl font-semibold text-lg"
+            className="inline-flex items-center gap-2 bg-[#102032] text-white px-8 py-4 rounded-xl font-semibold text-lg"
           >
             Book a Free Call <ArrowRight className="w-6 h-6" />
           </Link>

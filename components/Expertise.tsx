@@ -3,126 +3,70 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// DATA
-const experticeCards = [
+const expertise = [
   {
     id: 1,
-    name: "Service",
-    cardNumber: "01",
+    number: "01",
     title: "Tech & AI",
     subTitle: "Modernise your practice systems.",
-    description: "PMS optimisation, AI chatbots, automation, cloud migration, cybersecurity, and integrations that actually stick.",
-    bgColor: "#0A3D91",
-    buttonText: "Learn about Tech & AI",
-    link: "/services",
+    description:
+      "PMS optimisation, AI chatbots, automation, cloud migration, cybersecurity, and integrations that actually stick.",
     video: "/videos/expertise1.mp4",
-    buttonBg: "#00C4CC",
-    buttonTextColor: "#000000",
-    textColor: "text-white",
   },
   {
     id: 2,
-    name: "Service",
-    cardNumber: "02",
+    number: "02",
     title: "Customer Experience",
     subTitle: "Convert more, lose less.",
-    description: "Phone scripts, patient onboarding, treatment presentation, recall systems, Google Business, and reviews that build your reputation.",
-    bgColor: "#F3F4F6",
-    buttonText: "Learn about CX",
-    link: "/services",
+    description:
+      "Phone scripts, patient onboarding, treatment presentation, recall systems, Google Business, and reviews that build your reputation.",
     video: "/videos/expertise2.mp4",
-    buttonBg: "#1E3A5F",
-    buttonTextColor: "#FFFFFF",
-    textColor: "text-gray-900",
   },
   {
     id: 3,
-    name: "Service",
-    cardNumber: "03",
+    number: "03",
     title: "Training",
     subTitle: "Your team, finally performing.",
-    description: "Front desk, practice manager, nurse, and dentist training. Virtual or on-site. Your whole team leveled up.",
-    bgColor: "#10B981",
-    buttonText: "Learn about Training",
-    link: "/services",
+    description:
+      "Front desk, practice manager, nurse, and dentist training. Virtual or on-site. Your whole team leveled up.",
     video: "/videos/expertise3.mp4",
-    buttonBg: "#FFFFFF",
-    buttonTextColor: "#000000",
-    textColor: "text-white",
   },
   {
     id: 4,
-    name: "Service",
-    cardNumber: "04",
+    number: "04",
     title: "Results",
     subTitle: "Measure everything that matters.",
-    description: "Every system we build is tracked. You see exactly what's working, what's not, and where the revenue is.",
-    bgColor: "#1E3A5F",
-    buttonText: "See our process",
-    link: "/services",
+    description:
+      "Every system we build is tracked. You see exactly what's working, what's not, and where the revenue is.",
     video: "/videos/expertise4.mp4",
-    buttonBg: "#00C4CC",
-    buttonTextColor: "#000000",
-    textColor: "text-white",
   },
 ];
 
 const Expertise = () => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const sectionRef = useRef<HTMLDivElement[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const isDesktop = window.innerWidth >= 768;
-    if (!isDesktop) return;
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReduced) return;
 
     const ctx = gsap.context(() => {
-      const sections = sectionRef.current;
-
-      // initial state
-      gsap.set(sections, { yPercent: 100 });
-      gsap.set(sections[0], { yPercent: 0 });
-
-      const tl = gsap.timeline({
+      gsap.from(".expertise-card", {
+        y: 48,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top top",
-          end: `+=${sections.length * 100}%`,
-          scrub: 1.2,
-          pin: true,
-          anticipatePin: 1,
+          start: "top 78%",
         },
-      });
-
-      sections.forEach((section, index) => {
-        if (index === 0) return;
-
-        // next comes up
-        tl.to(
-          section,
-          {
-            yPercent: 0,
-            ease: "power3.inOut",
-          },
-          index,
-        );
-
-        // previous goes down
-        tl.to(
-          sections[index - 1],
-          {
-            y: 120,
-            scale: 0.9,
-            opacity: 0.5,
-            transformOrigin: "top center",
-            ease: "power3.inOut",
-          },
-          index,
-        );
       });
     }, containerRef);
 
@@ -130,82 +74,65 @@ const Expertise = () => {
   }, []);
 
   return (
-    <div className="container mx-auto px-4">
-      <div
-        ref={containerRef}
-        className="relative md:h-screen overflow-hidden space-y-5 md:space-y-0"
-      >
-        {experticeCards.map((card, index) => (
-          <div
-            key={index}
-            ref={(el) => {
-              if (el) sectionRef.current[index] = el;
-            }}
-            style={{ backgroundColor: card.bgColor }}
-            className="
-              w-full 
-              h-auto md:h-screen 
-              flex flex-col md:flex-row 
-              items-start md:items-center 
-              justify-between 
-              gap-6
-              p-5 md:p-10 
-              rounded-4xl
+    <section ref={containerRef} className="container mx-auto py-20 md:py-28 px-4">
+      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8">
+        <div className="max-w-2xl">
+          <p className="eyebrow mb-4">What we do</p>
+          <h2 className="font-display text-4xl md:text-5xl font-medium text-ink">
+            Four disciplines.
+            <br />
+            One accountable partner.
+          </h2>
+        </div>
+        <p className="text-lg text-muted max-w-md leading-relaxed">
+          We deploy the right specialism for the gap in your practice, then
+          implement it and measure the result.
+        </p>
+      </div>
 
-              relative md:absolute md:inset-0
-            "
+      <div className="grid md:grid-cols-2 gap-6">
+        {expertise.map((item) => (
+          <article
+            key={item.id}
+            className="expertise-card group bg-paper border border-line rounded-2xl overflow-hidden transition-all duration-300 hover:border-accent/50 hover:shadow-lg"
           >
-            {/* LEFT */}
-            <div className={`md:basis-2/3 flex flex-col justify-between gap-6 ${card.textColor}`}>
-              <div className="space-y-4 md:space-y-7">
-                <h4 className="bg-gray-300/50 p-2 w-fit rounded-md font-semibold text-sm">
-                  {card.name}
-                </h4>
-                <h2 className="text-3xl md:text-7xl font-bold">{card.title}</h2>
-              </div>
-
-              <div className="space-y-3">
-                <h3 className="text-xl md:text-2xl font-semibold">
-                  {card.subTitle}
-                </h3>
-                <p className="text-base md:text-lg md:w-1/2 opacity-90">
-                  {card.description}
-                </p>
-
-                <Link
-                  href={card.link}
-                  style={{
-                    backgroundColor: card.buttonBg,
-                    color: card.buttonTextColor,
-                  }}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold w-fit"
-                >
-                  {card.buttonText}
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
+            <div className="relative aspect-[16/10] overflow-hidden bg-bone">
+              <video
+                src={item.video}
+                loop
+                autoPlay
+                muted
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+              />
+              <span className="absolute top-4 left-4 font-display text-sm text-accent bg-paper/95 backdrop-blur-sm px-3 py-1 rounded-full border border-line">
+                {item.number}
+              </span>
             </div>
 
-            {/* RIGHT */}
-            <div className="flex flex-col items-end gap-4 w-full md:w-auto">
-              <h2 className="text-4xl md:text-8xl font-bold opacity-30">
-                {card.cardNumber}
-              </h2>
+            <div className="p-7 md:p-8">
+              <h3 className="font-display text-2xl md:text-3xl font-medium text-ink">
+                {item.title}
+              </h3>
+              <p className="text-base font-medium text-ink-soft mt-2">
+                {item.subTitle}
+              </p>
+              <p className="text-muted mt-3 leading-relaxed">
+                {item.description}
+              </p>
 
-              <div className="relative w-40 h-40 md:w-72 md:h-[420px] rounded-xl overflow-hidden rotate-3 bg-white">
-                <video
-                  src={card.video}
-                  loop
-                  autoPlay
-                  muted
-                  className="absolute inset-0 w-full h-full object-cover p-2 rounded-2xl"
-                />
-              </div>
+              <Link
+                href="/services"
+                className="luxury-link inline-flex items-center gap-1.5 mt-6 text-sm font-medium text-accent"
+              >
+                Learn more
+                <ArrowUpRight className="w-4 h-4" />
+              </Link>
             </div>
-          </div>
+          </article>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

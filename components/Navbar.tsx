@@ -1,9 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import gsap from "gsap";
-import { useRef, useState } from "react";
-import MagneticButton from "./MagneticButton";
+import { useEffect, useState } from "react";
 
 const menus = [
   { id: 1, name: "Services", path: "/services" },
@@ -13,101 +11,119 @@ const menus = [
 ];
 
 const Navbar = () => {
-  const getResultRef = useRef<HTMLAnchorElement>(null);
+  const [scrolled, setScrolled] = useState(false);
   const [openMobileBar, setOpenMobileBar] = useState(false);
 
-  const handleEnter = (e: any) => {
-    const wrapper = e.currentTarget.querySelector(".wrapper");
-    const first = wrapper.querySelector(".firstSpan");
-    const last = wrapper.querySelector(".lastSpan");
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 16);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-    gsap.to(first, { y: "-100%", x: 1, duration: 0.2, yoyo: true });
-    gsap.to(last, { y: "-100%", x: 0, duration: 0.2, yoyo: true });
-  };
-
-  const handleLeave = (e: any) => {
-    const wrapper = e.currentTarget.querySelector(".wrapper");
-    const first = wrapper.querySelector(".firstSpan");
-    const last = wrapper.querySelector(".lastSpan");
-
-    gsap.to(first, { y: "0%", x: 3, duration: 0.2, ease: "power1.inOut", yoyo: true });
-    gsap.to(last, { y: "0%", x: 0, duration: 0.2, ease: "power1.inOut", yoyo: true });
-  };
-
-  const handleGetResultsEnter = () => {
-    if (!getResultRef.current) return;
-    gsap.to(getResultRef.current, { rotation: -5, scale: 1.1, duration: 0.3, yoyo: true });
-  };
-
-  const handleGetResultLeave = () => {
-    if (!getResultRef.current) return;
-    gsap.to(getResultRef.current, { rotation: 0, scale: 1 });
-  };
+  // lock body scroll when mobile menu open
+  useEffect(() => {
+    document.body.style.overflow = openMobileBar ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [openMobileBar]);
 
   return (
-    <div className="relative container mx-auto px-2 md:px-0">
-      <div className="flex items-center justify-between gap-2 py-3 w-full">
-        <Link href="/" className="z-50 flex items-center">
-          <Image src="/logo.png" alt="Consuldent" width={144} height={40} className="w-36" style={{ height: 'auto' }} priority />
-        </Link>
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-bone/85 backdrop-blur-md border-b border-line"
+          : "bg-transparent border-b border-transparent"
+      }`}
+    >
+      <nav className="container mx-auto px-4 md:px-0">
+        <div className="flex items-center justify-between py-2.5">
+          <Link href="/" className="flex items-center" aria-label="Consuldent home">
+            <Image
+              src="/logo.png"
+              alt="Consuldent"
+              width={144}
+              height={40}
+              className="w-28 md:w-32 h-auto"
+              style={{ height: "auto" }}
+              priority
+            />
+          </Link>
 
-        <div className="hidden md:flex gap-3 p-2 px-1 rounded-2xl bg-white">
-          {menus.map((menu) => (
-            <Link
-              key={menu.id}
-              href={menu.path}
-              onMouseEnter={handleEnter}
-              onMouseLeave={handleLeave}
-              className="relative text-xs font-semibold px-2"
-            >
-              <div className="wrapper relative overflow-hidden p-2">
-                <span className="firstSpan block">{menu.name}</span>
-                <span className="lastSpan block absolute left-0 top-full bg-black p-2 text-white rounded-md">
-                  {menu.name}
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center gap-8">
+            {menus.map((menu) => (
+              <Link
+                key={menu.id}
+                href={menu.path}
+                className="luxury-link text-sm font-medium text-ink/80 hover:text-ink transition-colors"
+              >
+                {menu.name}
+              </Link>
+            ))}
+          </div>
 
-        <MagneticButton>
+          {/* Desktop CTA */}
           <Link
             href="/contact"
-            ref={getResultRef}
-            onMouseEnter={handleGetResultsEnter}
-            onMouseLeave={handleGetResultLeave}
-            className="bg-[#0A3D91] hidden md:flex items-center justify-center gap-2 py-2 px-4 rounded-xl hover:bg-[#0A3D91]/90 transition-colors"
+            className="hidden md:inline-flex items-center gap-2 bg-accent text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-accent/90 transition-colors"
           >
-            <h2 className="text-sm font-semibold text-white">Book Free Call</h2>
+            Book a Free Call
           </Link>
-        </MagneticButton>
 
-        <div onClick={() => setOpenMobileBar(!openMobileBar)} className="md:hidden space-y-1 bg-[#0A3D91] p-3 rounded-md absolute right-5 top-6 z-50 cursor-pointer">
-          <div className="w-6 h-0.5 bg-black"></div>
-          <div className="w-6 h-0.5 bg-black"></div>
+          {/* Mobile toggle */}
+          <button
+            type="button"
+            onClick={() => setOpenMobileBar((v) => !v)}
+            aria-label={openMobileBar ? "Close menu" : "Open menu"}
+            aria-expanded={openMobileBar}
+            className="md:hidden relative w-10 h-10 flex flex-col items-center justify-center gap-1.5 cursor-pointer"
+          >
+            <span
+              className={`block h-px bg-ink transition-all duration-300 ${
+                openMobileBar ? "w-6 translate-y-[7px] rotate-45" : "w-6"
+              }`}
+            />
+            <span
+              className={`block h-px bg-ink transition-all duration-300 ${
+                openMobileBar ? "opacity-0" : "w-6"
+              }`}
+            />
+            <span
+              className={`block h-px bg-ink transition-all duration-300 ${
+                openMobileBar ? "w-6 -translate-y-[7px] -rotate-45" : "w-6"
+              }`}
+            />
+          </button>
         </div>
+      </nav>
 
-        {openMobileBar && (
-          <div className="mx-10 md:hidden z-30">
-            <div className="absolute left-0 top-0 bg-[#0A3D91] flex items-center justify-center flex-col gap-5 w-full h-screen mx-auto z-30 p-10">
-              {menus.map((menu) => (
-                <Link
-                  key={menu.id}
-                  href={menu.path}
-                  className="text-white border border-white/30 px-5 rounded-md py-2 hover:bg-white/10 transition-colors"
-                  onClick={() => setOpenMobileBar(false)}
-                >
-                  {menu.name}
-                </Link>
-              ))}
-              <Link href="/contact" className="bg-[#00C4CC] text-black px-5 rounded-md py-2 font-semibold hover:bg-[#00C4CC]/90 transition-colors" onClick={() => setOpenMobileBar(false)}>
-                Book Free Call
+      {/* Mobile menu */}
+      {openMobileBar && (
+        <div className="md:hidden fixed inset-0 top-0 z-40 bg-bone flex flex-col">
+          <div className="flex flex-col gap-2 p-8 pt-28">
+            {menus.map((menu) => (
+              <Link
+                key={menu.id}
+                href={menu.path}
+                onClick={() => setOpenMobileBar(false)}
+                className="font-display text-3xl text-ink border-b border-line py-4"
+              >
+                {menu.name}
               </Link>
-            </div>
+            ))}
+            <Link
+              href="/contact"
+              onClick={() => setOpenMobileBar(false)}
+              className="mt-6 inline-flex items-center justify-center bg-accent text-white px-6 py-4 rounded-full font-medium"
+            >
+              Book a Free Call
+            </Link>
           </div>
-        )}
-      </div>
-    </div>
+        </div>
+      )}
+    </header>
   );
 };
 

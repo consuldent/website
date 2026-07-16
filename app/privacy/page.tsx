@@ -1,10 +1,10 @@
 export default function PrivacyPage() {
   return (
-    <main className="bg-[#FAF4EC]">
+    <main className="bg-[#F5F0E8]">
       <div className="container mx-auto py-16 px-4">
         {/* Header */}
         <div className="mb-16">
-          <h1 className="text-5xl md:text-8xl font-bold text-[#0A3D91] mb-6">
+          <h1 className="text-5xl md:text-8xl font-bold text-[#102032] mb-6">
             Privacy Policy
           </h1>
           <p className="text-gray-600">Last updated: January 2025</p>
@@ -13,7 +13,7 @@ export default function PrivacyPage() {
         {/* Content */}
         <div className="max-w-3xl space-y-8">
           <section>
-            <h2 className="text-2xl font-bold text-[#0A3D91] mb-4">1. Information We Collect</h2>
+            <h2 className="text-2xl font-bold text-[#102032] mb-4">1. Information We Collect</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
               Consuldent ("we," "our," or "us") collects information to provide consulting services for dental practices. This includes:
             </p>
@@ -25,7 +25,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-[#0A3D91] mb-4">2. How We Use Your Information</h2>
+            <h2 className="text-2xl font-bold text-[#102032] mb-4">2. How We Use Your Information</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
               We use collected information to:
             </p>
@@ -39,7 +39,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-[#0A3D91] mb-4">3. Information Sharing</h2>
+            <h2 className="text-2xl font-bold text-[#102032] mb-4">3. Information Sharing</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
               We do not sell, rent, or share your personal information with third parties except:
             </p>
@@ -51,21 +51,21 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-[#0A3D91] mb-4">4. Data Security</h2>
+            <h2 className="text-2xl font-bold text-[#102032] mb-4">4. Data Security</h2>
             <p className="text-gray-700 leading-relaxed">
               We take reasonable measures to protect your personal information from unauthorized access, misuse, alteration, or destruction. This includes secure storage, encryption for sensitive data, and access controls. While we strive for complete security, no method of transmission over the Internet is 100% secure.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-[#0A3D91] mb-4">5. Cookies and Tracking</h2>
+            <h2 className="text-2xl font-bold text-[#102032] mb-4">5. Cookies and Tracking</h2>
             <p className="text-gray-700 leading-relaxed">
               Our website uses cookies to enhance your browsing experience. Cookies are small files stored on your device that help us analyze web traffic and personalize content. You can control cookie preferences through your browser settings. Disabling cookies may affect website functionality.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-[#0A3D91] mb-4">6. Your Rights</h2>
+            <h2 className="text-2xl font-bold text-[#102032] mb-4">6. Your Rights</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
               You have the right to:
             </p>
@@ -79,21 +79,21 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-[#0A3D91] mb-4">7. External Links</h2>
+            <h2 className="text-2xl font-bold text-[#102032] mb-4">7. External Links</h2>
             <p className="text-gray-700 leading-relaxed">
               Our website may contain links to third-party websites. Consuldent is not responsible for the privacy practices or content of these external sites. We recommend reviewing their privacy policies before providing any personal information.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-[#0A3D91] mb-4">8. Changes to This Policy</h2>
+            <h2 className="text-2xl font-bold text-[#102032] mb-4">8. Changes to This Policy</h2>
             <p className="text-gray-700 leading-relaxed">
               We reserve the right to update this Privacy Policy at any time. Changes will be posted on this page with an updated "Last modified" date. Continued use of our website and services after changes constitutes acceptance of the updated policy.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-[#0A3D91] mb-4">9. Contact Us</h2>
+            <h2 className="text-2xl font-bold text-[#102032] mb-4">9. Contact Us</h2>
             <p className="text-gray-700 leading-relaxed">
               If you have questions about this Privacy Policy or wish to exercise your rights, please contact us at:<br />
               <strong>Email:</strong> vrinda@consuldent.com.au<br />

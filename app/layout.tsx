@@ -1,14 +1,23 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import GrainOverlay from "@/components/GrainOverlay";
-import CustomCursor from "@/components/CustomCursor";
 
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "900"],
+  style: ["normal", "italic"],
+  variable: "--font-fraunces",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -16,7 +25,7 @@ export const metadata: Metadata = {
   description:
     "Dental practice consulting powered by AI. Results in 90 days. PMS optimisation, automation, training for dental practices in Melbourne.",
   metadataBase: new URL("https://consuldent.com.au"),
- alternates: {
+  alternates: {
     canonical: "/",
   },
   icons: {
@@ -43,8 +52,8 @@ export const metadata: Metadata = {
     description: "Dental practice consulting powered by AI. Results in 90 days.",
   },
   other: {
-    "msapplication-TileColor": "#0A3D91",
-    "theme-color": "#0A3D91",
+    "msapplication-TileColor": "#102032",
+    "theme-color": "#102032",
   },
 };
 
@@ -57,7 +66,7 @@ const jsonLd = {
   "url": "https://consuldent.com.au",
   "logo": "https://consuldent.com.au/logo.png",
   "image": "https://consuldent.com.au/logo.png",
-  "email": "hello@consuldent.com.au",
+  "email": "support@consuldent.com.au",
   "telephone": "+61-400-000-000",
   "address": {
     "@type": "PostalAddress",
@@ -78,14 +87,14 @@ const jsonLd = {
     {
       "@type": "Person",
       "name": "Dr Vrinda Vashisht",
-      "jobTitle": "Founder & Principal Consultant"
+      "jobTitle": "Founder & Managing Director"
     }
   ],
   "employee": [
     {
       "@type": "Person",
       "name": "Dr Vrinda Vashisht",
-      "jobTitle": "Founder & Principal Consultant"
+      "jobTitle": "Founder & Managing Director"
     },
   ],
   "sameAs": [
@@ -107,14 +116,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.className} scroll-smooth`}>
+    <html lang="en" className={`${inter.variable} ${fraunces.variable} scroll-smooth`}>
       <body className="w-full overflow-x-hidden">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <GrainOverlay />
-        <CustomCursor />
         <Navbar />
         {children}
         <Footer />

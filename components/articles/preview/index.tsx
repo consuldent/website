@@ -41,7 +41,7 @@ export default function ArticlePreview({
             className="object-cover transition-transform duration-300 group-hover:scale-105"
           />
         </div>
-        <h2 className="text-2xl font-bold mb-2 group-hover:text-[#0A3D91] transition-colors">
+        <h2 className="text-2xl font-bold mb-2 group-hover:text-[#102032] transition-colors">
           {title}
         </h2>
         <p className="text-gray-600 mb-4">{metaDescription}</p>

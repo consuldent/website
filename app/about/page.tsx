@@ -1,170 +1,299 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
-import { FaLinkedin, FaCheckCircle } from 'react-icons/fa';
+import Link from 'next/link';
+import {
+  Check,
+  Cpu,
+  TrendingUp,
+  PhoneCall,
+  ClipboardList,
+  GraduationCap,
+  Compass,
+  ArrowUpRight,
+} from 'lucide-react';
+// import { FaLinkedin } from 'react-icons/fa'; // LinkedIn re-enabled later
 
 export const metadata: Metadata = {
   title: 'About - Consuldent',
   description:
-    'Learn about Consuldent — Melbourne\'s dental practice growth specialists. AI-powered consulting, hands-on implementation, results in 90 days.',
+    "Learn about Consuldent: Melbourne's dental practice growth specialists. AI-powered consulting, hands-on implementation, results in 90 days.",
   openGraph: {
     title: 'About - Consuldent',
     description:
-      'Melbourne\'s dental practice growth specialists. AI-powered consulting, hands-on implementation, results in 90 days.',
+      "Melbourne's dental practice growth specialists. AI-powered consulting, hands-on implementation, results in 90 days.",
     url: 'https://consuldent.com.au/about',
   },
 };
 
-const team = [
-  {
-    name: 'Dr Vrinda Vashisht',
-    role: 'Founder & Principal Consultant',
-    bio: 'With over a decade of clinical and practice management experience across multiple dental practices in Australia, Dr Vrinda brings a rare dual perspective — she\'s been both the dentist in the chair and the manager behind the desk. Her expertise spans clinical operations, patient journey design, and team performance optimisation. She founded Consuldent on a simple premise: great dentistry shouldn\'t mean complicated business.',
-    image: '/vrinda.jpg',
-    linkedin: 'https://www.linkedin.com/in/dr-vrinda-vashisht-ba06ab27a/',
-    specialties: ['Practice Management', 'Clinical Operations', 'Patient Experience'],
-  },
-];
-
 const values = [
   {
-    title: 'We Implement, Not Just Advise',
+    title: 'We implement, not just advise',
     description:
       'Every system we build is tracked, measured, and optimised for real results. We do the heavy lifting so you can focus on patients.',
   },
   {
-    title: 'Results in 90 Days or Less',
+    title: 'Results in 90 days or less',
     description:
-      'Not 6–18 months like traditional consultants. We deliver measurable improvements fast — because your practice can\'t wait.',
+      "Not 6–18 months like traditional consultants. We deliver measurable improvements fast, because your practice can't wait.",
   },
   {
-    title: 'Your Practice, Your Way',
+    title: 'Your practice, your way',
     description:
       'Every practice is unique. We build custom solutions tailored to your specific needs, team dynamics, and growth goals.',
   },
 ];
 
+// The Bench: anonymous capability cards. No individual names.
+// Describes the tools, skills and core specialties our consultants bring.
+const bench = [
+  {
+    icon: Cpu,
+    title: 'Tech & AI',
+    summary:
+      'Modernise the systems your practice runs on and let automation do the repetitive work.',
+    skills: [
+      'PMS optimisation',
+      'AI chatbots & automation',
+      'Cloud migration',
+      'Cybersecurity',
+      'Systems integration',
+    ],
+  },
+  {
+    icon: TrendingUp,
+    title: 'Marketing & Growth',
+    summary:
+      'Fill the chair consistently with patient acquisition engines that compound.',
+    skills: [
+      'Patient acquisition',
+      'Google Business Profile',
+      'Reviews & reputation',
+      'Recall campaigns',
+      'Treatment presentation',
+    ],
+  },
+  {
+    icon: PhoneCall,
+    title: 'Customer Experience',
+    summary:
+      'Turn every enquiry into a booked, kept and returned appointment.',
+    skills: [
+      'Phone scripts & call handling',
+      'Patient onboarding',
+      'Recall systems',
+      'Reputation management',
+    ],
+  },
+  {
+    icon: ClipboardList,
+    title: 'Practice Operations',
+    summary:
+      'Find the revenue and time hiding inside your daily workflows.',
+    skills: [
+      'KPIs & reporting',
+      'Scheduling efficiency',
+      'Fee collection & billing',
+      'Profitability & capacity',
+    ],
+  },
+  {
+    icon: GraduationCap,
+    title: 'Clinical & Training',
+    summary:
+      'Lift the capability of every role across the practice.',
+    skills: [
+      'Front desk training',
+      'Practice manager coaching',
+      'Nurse & dentist upskilling',
+      'Virtual + on-site delivery',
+    ],
+  },
+  {
+    icon: Compass,
+    title: 'Strategy & Growth Planning',
+    summary:
+      'A clear, accountable plan that turns ambition into a 90-day roadmap.',
+    skills: [
+      'Growth roadmaps',
+      'Benchmarking',
+      '90-day implementation plans',
+      'Performance tracking',
+    ],
+  },
+];
+
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-[#FAF4EC]">
-      <div className="container mx-auto py-16 px-4">
+    <main className="min-h-screen bg-bone">
+      <div className="container mx-auto px-4 py-20 md:py-28">
         {/* Header */}
-        <div className="mb-16 animate-fade-in-up">
-          <h1 className="text-5xl md:text-8xl font-bold text-[#0A3D91] mb-6">
-            About Consuldent
+        <div className="mb-20 md:mb-28 max-w-3xl animate-fade-in-up">
+          <p className="eyebrow mb-5">About</p>
+          <span className="accent-rule mb-6" />
+          <h1 className="font-display text-5xl md:text-7xl font-medium text-ink leading-[1.03]">
+            We help dental practices grow.
           </h1>
-          <p className="text-xl md:text-2xl text-gray-700 max-w-3xl">
-            We help dental practices grow through smarter systems, better
-            technology, and trained teams. Results in 90 days or less.
+          <p className="text-xl text-muted mt-7 leading-relaxed">
+            Smarter systems, better technology, and trained teams, implemented,
+            not just advised. Results in 90 days or less.
           </p>
         </div>
 
         {/* Our Story */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-[#0A3D91] mb-6">Our Story</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <p className="text-gray-600 text-lg mb-4">
-                You went to dental school to be a great dentist. Nobody taught
-                you how to run a business.
-              </p>
-              <p className="text-gray-600 text-lg mb-4">
-                Every day, brilliant dentists leave thousands of dollars on the
-                table because their systems are broken. Phone calls go
-                unanswered. Patients don&apos;t book. Staff burns out. Sound
-                familiar?
-              </p>
-              <p className="text-gray-600 text-lg">
-                That&apos;s where we come in. Consuldent was founded on a simple
-                belief: great dentistry shouldn&apos;t mean complicated business.
-              </p>
-            </div>
-            <div>
-              <p className="text-gray-600 text-lg mb-4">
-                We combine AI-powered consulting with hands-on implementation to
-                transform your practice. Not in 12–18 months — but in 90 days
-                or less.
-              </p>
-              <p className="text-gray-600 text-lg">
-                Our team has been in your shoes. We&apos;ve worked with dental
-                practices across Australia and seen what works. Now we implement
-                systems that actually stick.
-              </p>
-            </div>
+        <section className="mb-24 md:mb-32 grid md:grid-cols-12 gap-10">
+          <div className="md:col-span-4">
+            <p className="eyebrow mb-4">Our story</p>
+            <h2 className="font-display text-3xl md:text-4xl font-medium text-ink">
+              Great dentistry shouldn&apos;t mean complicated business.
+            </h2>
           </div>
-        </div>
+          <div className="md:col-span-7 md:col-start-6 space-y-5 text-lg text-ink-soft leading-relaxed">
+            <p>
+              You went to dental school to be a great dentist. Nobody taught you
+              how to run a business.
+            </p>
+            <p>
+              Every day, brilliant dentists leave thousands of dollars on the
+              table because their systems are broken. Phone calls go unanswered.
+              Patients don&apos;t book. Staff burn out. Sound familiar?
+            </p>
+            <p>
+              We combine AI-powered consulting with hands-on implementation to
+              transform your practice, not in 12–18 months, but in 90 days or
+              less. Our team has worked with dental practices across Australia
+              and seen what works. Now we implement systems that actually stick.
+            </p>
+          </div>
+        </section>
 
-        {/* Why Choose Us */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-[#0A3D91] mb-8">
-            Why Consuldent?
+        {/* Why Consuldent */}
+        <section className="mb-24 md:mb-32">
+          <p className="eyebrow mb-4">Why Consuldent</p>
+          <span className="accent-rule mb-6" />
+          <h2 className="font-display text-3xl md:text-4xl font-medium text-ink mb-10">
+            A different kind of consultancy.
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
             {values.map((value) => (
               <div
                 key={value.title}
-                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
+                className="bg-paper border border-line rounded-2xl p-7"
               >
-                <FaCheckCircle className="w-8 h-8 text-[#10B981] mb-4" />
-                <h3 className="text-xl font-bold text-[#0A3D91] mb-2">
+                <div className="w-10 h-10 rounded-full border border-line flex items-center justify-center mb-5">
+                  <Check className="w-4 h-4 text-accent" strokeWidth={2} />
+                </div>
+                <h3 className="font-display text-xl font-medium text-ink mb-2">
                   {value.title}
                 </h3>
-                <p className="text-gray-600">{value.description}</p>
+                <p className="text-muted leading-relaxed">{value.description}</p>
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
-        {/* Team */}
-        <div className="mb-2">
-          <h2 className="text-3xl font-bold text-[#0A3D91] mb-8">
-            Meet the Team
+        {/* Founder spotlight (light) */}
+        <section className="mb-24 md:mb-32">
+          <p className="eyebrow mb-4">Leadership</p>
+          <span className="accent-rule mb-6" />
+          <h2 className="font-display text-3xl md:text-4xl font-medium text-ink mb-10">
+            Directed by our founder.
           </h2>
-          <div className="grid md:grid-cols-1 gap-8 place-items-center">
-            {team.map((member) => (
-              <div
-                key={member.name}
-                className="flex flex-col items-center text-center group"
+          <div className="grid md:grid-cols-12 gap-10 items-center bg-paper border border-line rounded-3xl p-7 md:p-12">
+            <div className="md:col-span-4">
+              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-line bg-paper">
+                <Image
+                  src="/vrinda.jpg"
+                  alt="Dr Vrinda Vashisht, Founder & Managing Director"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+              </div>
+            </div>
+            <div className="md:col-span-7 md:col-start-6">
+              <p className="text-sm uppercase tracking-[0.14em] text-accent font-medium">
+                Founder &amp; Managing Director
+              </p>
+              <h3 className="font-display text-3xl md:text-4xl font-medium text-ink mt-2">
+                Dr Vrinda Vashisht
+              </h3>
+              <p className="text-muted mt-1">Dental Surgeon &amp; Practice Management Consultant</p>
+              <p className="text-ink-soft leading-relaxed mt-5">
+                With over a decade of clinical and practice management experience
+                across multiple dental practices in Australia, Dr Vrinda brings a
+                rare dual perspective, she&apos;s been both the dentist in the
+                chair and the manager behind the desk. Her expertise spans
+                clinical operations, patient journey design, and team performance
+                optimisation. She founded Consuldent on a simple premise: great
+                dentistry shouldn&apos;t mean complicated business.
+              </p>
+              {/* LinkedIn link re-enabled later */}
+              {/* <a
+                href="https://www.linkedin.com/in/dr-vrinda-vashisht-ba06ab27a/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 mt-6 text-sm font-medium text-ink border border-ink/25 rounded-full px-5 py-2.5 hover:bg-ink hover:text-bone transition-colors"
               >
-                <div className="relative w-48 h-48 mb-6 rounded-full overflow-hidden border-4 border-[#0A3D91] group-hover:border-[#00C4CC] transition-colors duration-300">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
+                <FaLinkedin className="w-4 h-4" />
+                Connect on LinkedIn
+              </a> */}
+            </div>
+          </div>
+        </section>
+
+        {/* The Bench: anonymous capability cards */}
+        <section>
+          <div className="max-w-2xl mb-10">
+            <p className="eyebrow mb-4">The bench</p>
+            <span className="accent-rule mb-6" />
+            <h2 className="font-display text-3xl md:text-4xl font-medium text-ink">
+              Specialists behind every engagement.
+            </h2>
+            <p className="text-lg text-muted mt-4 leading-relaxed">
+              We deploy the right specialist for the gap in your practice, a
+              senior bench across tech, growth and operations, directed by our
+              founder.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {bench.map((b) => (
+              <div
+                key={b.title}
+                className="bg-paper border border-line rounded-2xl p-7 hover:border-ink/30 transition-colors"
+              >
+                <div className="w-11 h-11 rounded-xl border border-line bg-bone flex items-center justify-center mb-5">
+                  <b.icon className="w-5 h-5 text-accent" strokeWidth={1.5} />
                 </div>
-                <h3 className="text-xl font-bold text-[#0A3D91] mb-1">
-                  {member.name}
+                <h3 className="font-display text-xl font-medium text-ink">
+                  {b.title}
                 </h3>
-                <p className="text-sm font-semibold text-[#00C4CC] mb-3">
-                  {member.role}
+                <p className="text-muted mt-2 leading-relaxed text-sm">
+                  {b.summary}
                 </p>
-                <p className="text-gray-600 text-sm mb-4 max-w-xs">
-                  {member.bio}
-                </p>
-                <div className="flex flex-wrap gap-2 justify-center mb-4">
-                  {member.specialties.map((s) => (
-                    <span
+                <ul className="mt-5 space-y-2">
+                  {b.skills.map((s) => (
+                    <li
                       key={s}
-                      className="text-xs bg-[#0A3D91]/10 text-[#0A3D91] px-2 py-1 rounded-full"
+                      className="flex items-center gap-2 text-sm text-ink-soft"
                     >
+                      <span className="w-1 h-1 rounded-full bg-accent" />
                       {s}
-                    </span>
+                    </li>
                   ))}
-                </div>
-                <a
-                  href={member.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-[#0A3D91] text-white p-2 rounded-full hover:bg-[#0A3D91]/90 transition-colors"
-                >
-                  <FaLinkedin className="w-5 h-5" />
-                </a>
+                </ul>
               </div>
             ))}
           </div>
-        </div>
 
+          <div className="mt-12">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 bg-accent text-white px-7 py-3.5 rounded-full font-medium hover:bg-accent/90 transition-colors"
+            >
+              Book a Free Call <ArrowUpRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </section>
       </div>
     </main>
   );
