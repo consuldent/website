@@ -27,7 +27,7 @@ export default function Article({ frontMatter, source }: ArticleProps) {
     <article className="max-w-4xl mx-auto">
       <ArticleMeta date={date} author={author} tags={tags} readingTime={readingTime} />
       <ArticleTitle title={title} />
-      <div className="relative aspect-video mb-8 rounded-lg overflow-hidden bg-paper">
+      <div className="relative aspect-video mb-8 rounded-lg overflow-hidden">
         <Image
           src={image}
           alt={title}
