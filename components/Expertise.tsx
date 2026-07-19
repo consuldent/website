@@ -1,12 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const expertise = [
   {
@@ -48,33 +43,8 @@ const expertise = [
 ];
 
 const Expertise = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (prefersReduced) return;
-
-    const ctx = gsap.context(() => {
-      gsap.from(".expertise-card", {
-        y: 48,
-        opacity: 0,
-        duration: 0.7,
-        stagger: 0.12,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 78%",
-        },
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section ref={containerRef} className="container mx-auto py-20 md:py-28 px-4">
+    <section className="container mx-auto py-20 md:py-28 px-4">
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8">
         <div className="max-w-2xl">
           <p className="eyebrow mb-4">What we do</p>
@@ -96,7 +66,7 @@ const Expertise = () => {
             key={item.id}
             className="expertise-card group bg-paper border border-line rounded-2xl overflow-hidden transition-all duration-300 hover:border-accent/50 hover:shadow-lg"
           >
-            <div className="relative aspect-[16/10] overflow-hidden bg-bone">
+            <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-bone via-bone to-line/30">
               <video
                 src={item.video}
                 loop

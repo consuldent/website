@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Metadata } from 'next';
 import { supabase } from '@/lib/supabaseClient';
 import ArticlePreview from '@/components/articles/preview';
@@ -32,6 +33,9 @@ export default async function BlogPage() {
   return (
     <div className="min-h-screen bg-[#F5F0E8] pt-32 pb-16">
       <div className="max-w-6xl mx-auto px-6">
+        <Link href="/" className="inline-flex items-center gap-1 text-sm text-muted hover:text-ink transition-colors mb-8">
+          ← Back to Home
+        </Link>
         <h1 className="text-5xl font-bold mb-12">Blog</h1>
         
         {articles && articles.length > 0 ? (

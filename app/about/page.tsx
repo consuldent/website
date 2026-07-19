@@ -200,7 +200,7 @@ export default function AboutPage() {
           </h2>
           <div className="grid md:grid-cols-12 gap-10 items-center bg-paper border border-line rounded-3xl p-7 md:p-12">
             <div className="md:col-span-4">
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-line bg-paper">
+              <div className="relative aspect-square rounded-2xl overflow-hidden border border-line bg-paper">
                 <Image
                   src="/vrinda.jpg"
                   alt="Dr Vrinda Vashisht, Founder & Managing Director"

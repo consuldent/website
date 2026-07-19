@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getArticleBySlug, getArticleSlugs } from '@/lib/articles';
@@ -51,6 +52,9 @@ export default async function BlogArticle({ params }: Props) {
     return (
       <div className="min-h-screen bg-[#F5F0E8] pt-32 pb-16">
         <div className="max-w-4xl mx-auto px-6">
+          <Link href="/blog" className="inline-flex items-center gap-1 text-sm text-muted hover:text-ink transition-colors mb-8 block">
+            ← Back to Blog
+          </Link>
           <Article frontMatter={frontMatter} source={source} />
         </div>
       </div>
