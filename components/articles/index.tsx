@@ -27,13 +27,13 @@ export default function Article({ frontMatter, source }: ArticleProps) {
     <article className="max-w-4xl mx-auto">
       <ArticleMeta date={date} author={author} tags={tags} readingTime={readingTime} />
       <ArticleTitle title={title} />
-      <div className="relative aspect-video mb-8 rounded-lg overflow-hidden">
+      <div className="relative aspect-video mb-8 rounded-lg overflow-hidden bg-paper">
         <Image
           src={image}
           alt={title}
           fill
           sizes="100vw"
-          className="object-cover"
+          className="object-contain p-4"
           priority
         />
       </div>

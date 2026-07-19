@@ -56,6 +56,11 @@ export default async function BlogArticle({ params }: Props) {
             ← Back to Blog
           </Link>
           <Article frontMatter={frontMatter} source={source} />
+          <div className="mt-12 pt-8 border-t border-line">
+            <Link href="/blog" className="inline-flex items-center gap-1 text-sm text-muted hover:text-ink transition-colors">
+              ← Back to Blog
+            </Link>
+          </div>
         </div>
       </div>
     );
