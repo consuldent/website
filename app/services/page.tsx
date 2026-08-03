@@ -121,44 +121,41 @@ export default function ServicesPage() {
           ))}
         </div>
 
-        {/* Pricing Section */}
+        {/* Models Section */}
         <div className="mt-20">
           <h2 className="text-3xl md:text-5xl font-bold text-[#102032] mb-8">
-            Pricing
+            Engagement Models
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-white rounded-2xl p-8 shadow-lg">
               <h3 className="text-xl font-bold text-[#102032] mb-2">Audit</h3>
-              <div className="text-4xl font-bold text-[#102032] mb-4">$2,500</div>
               <p className="text-gray-600 mb-6">Comprehensive analysis of your practice with actionable recommendations.</p>
               <Link
-                href="/contact"
-                className="flex items-center justify-center gap-2 bg-[#102032] text-white p-3 rounded-xl font-semibold"
+                href="/contact?model=audit"
+                className="flex items-center justify-center gap-2 border-2 border-[#102032] text-[#102032] p-3 rounded-xl font-semibold hover:bg-[#102032] hover:text-white transition-colors"
               >
-                Get Started <ArrowRight className="w-5 h-5" />
+                Book an Audit <ArrowRight className="w-5 h-5" />
               </Link>
             </div>
             <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-[#6E2230]">
               <div className="bg-[#6E2230] text-white text-sm font-semibold px-3 py-1 rounded-full inline-block mb-4">Most Popular</div>
               <h3 className="text-xl font-bold text-[#102032] mb-2">Transformation</h3>
-              <div className="text-4xl font-bold text-[#102032] mb-4">$12,000</div>
               <p className="text-gray-600 mb-6">6-month comprehensive engagement with implementation and training.</p>
               <Link
-                href="/contact"
-                className="flex items-center justify-center gap-2 bg-[#6E2230] text-white p-3 rounded-xl font-semibold"
+                href="/contact?model=transformation"
+                className="flex items-center justify-center gap-2 border-2 border-[#6E2230] text-[#6E2230] p-3 rounded-xl font-semibold hover:bg-[#6E2230] hover:text-white transition-colors"
               >
-                Get Started <ArrowRight className="w-5 h-5" />
+                Start Transformation <ArrowRight className="w-5 h-5" />
               </Link>
             </div>
             <div className="bg-white rounded-2xl p-8 shadow-lg">
               <h3 className="text-xl font-bold text-[#102032] mb-2">Scale & Optimise</h3>
-              <div className="text-4xl font-bold text-[#102032] mb-4">$25,000</div>
               <p className="text-gray-600 mb-6">12-month partnership for sustained growth and optimisation.</p>
               <Link
-                href="/contact"
-                className="flex items-center justify-center gap-2 bg-[#102032] text-white p-3 rounded-xl font-semibold"
+                href="/contact?model=scale"
+                className="flex items-center justify-center gap-2 border-2 border-[#102032] text-[#102032] p-3 rounded-xl font-semibold hover:bg-[#102032] hover:text-white transition-colors"
               >
-                Get Started <ArrowRight className="w-5 h-5" />
+                Scale with Us <ArrowRight className="w-5 h-5" />
               </Link>
             </div>
           </div>

@@ -202,7 +202,7 @@ export default function AboutPage() {
             <div className="md:col-span-4">
               <div className="relative aspect-square rounded-2xl overflow-hidden border border-line bg-paper">
                 <Image
-                  src="/vrinda.jpg"
+                  src="/vrinda_headshot.png"
                   alt="Dr Vrinda Vashisht, Founder & Managing Director"
                   fill
                   className="object-cover"
