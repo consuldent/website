@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import GrainOverlay from "@/components/GrainOverlay";
+import { StatsigProvider } from "@/components/statsig-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -118,14 +119,16 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${fraunces.variable} scroll-smooth`}>
       <body className="w-full overflow-x-hidden">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <GrainOverlay />
-        <Navbar />
-        {children}
-        <Footer />
+        <StatsigProvider>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
+          <GrainOverlay />
+          <Navbar />
+          {children}
+          <Footer />
+        </StatsigProvider>
       </body>
     </html>
   );
