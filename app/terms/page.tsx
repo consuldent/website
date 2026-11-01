@@ -56,7 +56,7 @@ export default function TermsPage() {
               Our standard engagement process includes:
             </p>
             <ul className="list-disc list-inside text-gray-700 space-y-2">
-              <li><strong>Initial Consultation:</strong> Free 30-minute call to understand your practice needs</li>
+              <li><strong>Initial Consultation:</strong> Free 15-minute call to understand your practice needs</li>
               <li><strong>Proposal:</strong> Customised proposal outlining scope, deliverables, timeline, and investment</li>
               <li><strong>Agreement:</strong> Formal engagement agreement before work commences</li>
               <li><strong>Implementation:</strong> Project execution with regular check-ins and progress reports</li>

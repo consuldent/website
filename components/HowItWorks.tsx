@@ -14,21 +14,21 @@ const steps = [
     icon: Search,
     title: "Discover",
     description:
-      "We audit your practice operations, technology, and patient journey to identify the biggest opportunities for improvement.",
+      "We measure where enquiries are actually lost — calls, follow-up, recall, front desk — so the plan starts from evidence, not opinion.",
   },
   {
     id: 2,
     icon: MessageSquare,
-    title: "Design",
+    title: "Fix",
     description:
-      "We build custom systems tailored to your practice - from AI chatbots to training programs - designed to solve your specific challenges.",
+      "Scripts, follow-up, automation and training, built around how your practice already runs. Your team learns it in the room, not from a PDF.",
   },
   {
     id: 3,
     icon: TrendingUp,
-    title: "Deliver",
+    title: "Prove",
     description:
-      "We implement with you, track every metric, and optimise until you see measurable results. Most practices see improvement within 90 days.",
+      "We track the numbers we changed against the numbers before. You see what moved, what didn't, and what happens next — in writing.",
   },
 ];
 
@@ -66,8 +66,8 @@ const HowItWorks = () => {
           How it works
         </h2>
         <p className="text-lg text-muted mt-4 leading-relaxed">
-          A proven three-step process to transform your practice. No jargon, no
-          vague strategies, just systems that work.
+          Three steps, no jargon, and a number you can check at the end. Most
+          practices see the first change inside three weeks.
         </p>
       </div>
 
@@ -104,7 +104,7 @@ const HowItWorks = () => {
           href="/contact"
           className="inline-flex items-center gap-2 bg-accent text-white px-7 py-3.5 rounded-full font-medium hover:bg-accent/90 transition-colors"
         >
-          Start your journey <ArrowRight className="w-4 h-4" />
+          Book a free call <ArrowRight className="w-4 h-4" />
         </Link>
       </div>
     </section>

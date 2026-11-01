@@ -16,11 +16,14 @@ import {
 export const metadata: Metadata = {
   title: 'About - Consuldent',
   description:
-    "Learn about Consuldent: Melbourne's dental practice growth specialists. AI-powered consulting, hands-on implementation, results in 90 days.",
+    "Dr Vrinda Vashisht is a dentist and practising practice manager. Consuldent implements the fixes inside your practice — automation, fractional management, team training.",
+  alternates: {
+    canonical: "/about",
+  },
   openGraph: {
     title: 'About - Consuldent',
     description:
-      "Melbourne's dental practice growth specialists. AI-powered consulting, hands-on implementation, results in 90 days.",
+      "Dr Vrinda Vashisht is a dentist and practising practice manager. Consuldent implements the fixes inside your practice — automation, fractional management, team training.",
     url: 'https://consuldent.com.au/about',
   },
 };
@@ -32,9 +35,9 @@ const values = [
       'Every system we build is tracked, measured, and optimised for real results. We do the heavy lifting so you can focus on patients.',
   },
   {
-    title: 'Results in 90 days or less',
+    title: 'First fixes inside three weeks',
     description:
-      "Not 6–18 months like traditional consultants. We deliver measurable improvements fast, because your practice can't wait.",
+      "We start with the cheapest, fastest fix — not the 18-month retainer. You also get a written review of what moved at 90 days.",
   },
   {
     title: 'Your practice, your way',
@@ -135,7 +138,8 @@ export default function AboutPage() {
           </h1>
           <p className="text-xl text-muted mt-7 leading-relaxed">
             Smarter systems, better technology, and trained teams, implemented,
-            not just advised. Results in 90 days or less.
+            not just advised. First fixes inside three weeks — with everything
+            quoted in writing before we start.
           </p>
         </div>
 
@@ -158,10 +162,11 @@ export default function AboutPage() {
               Patients don&apos;t book. Staff burn out. Sound familiar?
             </p>
             <p>
-              We combine AI-powered consulting with hands-on implementation to
-              transform your practice, not in 12–18 months, but in 90 days or
-              less. Our team has worked with dental practices across Australia
-              and seen what works. Now we implement systems that actually stick.
+              We implement inside your practice: automate the repetitive work,
+              bring in fractional practice management instead of another
+              full-time salary, and train the front desk so the backlog stops
+              building. First fixes inside three weeks — and every engagement is
+              scoped and quoted in writing before it starts.
             </p>
           </div>
         </section>
@@ -290,7 +295,7 @@ export default function AboutPage() {
               href="/contact"
               className="inline-flex items-center gap-2 bg-accent text-white px-7 py-3.5 rounded-full font-medium hover:bg-accent/90 transition-colors"
             >
-              Book a Free Call <ArrowUpRight className="w-4 h-4" />
+              Book a free call <ArrowUpRight className="w-4 h-4" />
             </Link>
           </div>
         </section>

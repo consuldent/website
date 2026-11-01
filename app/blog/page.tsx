@@ -6,6 +6,7 @@ import ArticlePreview from '@/components/articles/preview';
 export const metadata: Metadata = {
   title: 'Blog - Consuldent',
   description: 'Insights and articles on dental practice growth, technology, and customer experience.',
+  alternates: { canonical: '/blog' },
 };
 
 export default async function BlogPage() {

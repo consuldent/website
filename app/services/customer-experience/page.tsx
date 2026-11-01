@@ -1,125 +1,168 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, CheckCircle, Phone, Users, Star } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Customer Experience for Dental Practices | Consuldent",
-  description: "Create exceptional patient journeys. Phone scripts, patient onboarding, treatment presentation, recall systems, and Google Business optimisation.",
+  description:
+    "Phone scripts, patient onboarding, treatment presentation, recall systems and Google Business optimisation. Turn the enquiries you already pay for into booked patients.",
+  alternates: {
+    canonical: "/services/customer-experience",
+  },
   openGraph: {
     title: "Customer Experience for Dental Practices | Consuldent",
-    description: "Create exceptional patient journeys. Turn first-time visitors into loyal patients who refer others.",
+    description:
+      "Turn first-time enquiries into booked, kept and returning patients.",
     url: "https://consuldent.com.au/services/customer-experience",
   },
 };
 
+const included = [
+  "Phone scripts and call handling standards",
+  "New patient onboarding",
+  "Treatment presentation frameworks",
+  "Recall and reactivation campaigns",
+  "Google Business Profile",
+  "Review and referral systems",
+];
+
+const signals = [
+  "The phone goes to voicemail at lunch, and nobody calls back.",
+  "People ask the price and never call again.",
+  "Quotes for big treatment go out and nobody follows up.",
+  "Two team members give two different answers to the same question.",
+];
+
+const steps = [
+  {
+    n: "01",
+    title: "Listen",
+    body: "We sit in on real calls and count what happens: enquiries, bookings, price questions, drop-offs. No guessing at conversion rates.",
+  },
+  {
+    n: "02",
+    title: "Rewrite",
+    body: "Scripts, offers and a follow-up cadence built around the way your patients actually talk. Short enough to remember under pressure.",
+  },
+  {
+    n: "03",
+    title: "Hold the line",
+    body: "Practice in the room, then measure. The standard survives only if someone is checking it weekly.",
+  },
+];
+
 export default function CustomerExperiencePage() {
   return (
-    <main className="bg-[#F5F0E8]">
-      <div className="container mx-auto py-16 px-4">
-        <div className="mb-12">
-          <Link href="/services" className="text-[#102032] font-semibold hover:underline">
-            ← Back to Services
-          </Link>
-        </div>
+    <main className="bg-bone">
+      <div className="container mx-auto px-4 py-16 md:py-24">
+        <Link
+          href="/services"
+          className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-ink transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          All services
+        </Link>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          <div>
-            <div className="inline-flex items-center gap-2 bg-[#6E2230] text-white px-4 py-2 rounded-full mb-6">
-              <Users className="w-5 h-5" />
-              <span className="font-semibold">Customer Experience</span>
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-[#102032] mb-6">
-              Convert More, Lose Less
+        <div className="grid md:grid-cols-12 gap-10 md:gap-14 mt-10 items-start">
+          <div className="md:col-span-7 animate-fade-in-up">
+            <p className="eyebrow mb-4">02 · Customer Experience</p>
+            <span className="accent-rule mb-6" />
+            <h1 className="font-display text-4xl md:text-6xl font-medium text-ink leading-[1.05]">
+              Turn more enquiries into booked patients.
             </h1>
-            <p className="text-xl text-gray-700 mb-8">
-              Create exceptional patient journeys. We design the systems that turn first-time visitors into loyal patients who refer others.
+            <p className="text-xl text-muted mt-6 leading-relaxed">
+              You&apos;re already paying to make the phone ring. What happens in
+              the next ninety seconds decides whether it becomes a patient.
             </p>
 
-            <div className="space-y-3 mb-8">
-              <div className="flex items-center gap-3">
-                <CheckCircle className="w-6 h-6 text-[#6E2230]" />
-                <span className="text-gray-700">Phone Script Development</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <CheckCircle className="w-6 h-6 text-[#6E2230]" />
-                <span className="text-gray-700">Patient Onboarding Systems</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <CheckCircle className="w-6 h-6 text-[#6E2230]" />
-                <span className="text-gray-700">Treatment Presentation Frameworks</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <CheckCircle className="w-6 h-6 text-[#6E2230]" />
-                <span className="text-gray-700">Google Business Optimisation</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <CheckCircle className="w-6 h-6 text-[#6E2230]" />
-                <span className="text-gray-700">Review & Referral Programs</span>
-              </div>
-            </div>
+            <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-3 mt-9">
+              {included.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-3 text-ink-soft"
+                >
+                  <Check
+                    className="w-4 h-4 text-accent mt-1 shrink-0"
+                    strokeWidth={2.5}
+                  />
+                  <span className="text-sm leading-relaxed">{item}</span>
+                </li>
+              ))}
+            </ul>
 
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4 mt-10">
+              <Link
+                href="/contact?model=audit"
+                className="inline-flex items-center justify-center gap-2 bg-accent text-white px-7 py-3.5 rounded-full font-medium hover:bg-accent/90 transition-colors"
+              >
+                Book a free call
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <p className="text-sm text-muted">
+                Start with a measured look, not a proposal.
+              </p>
+            </div>
+          </div>
+
+          <aside className="md:col-span-5 bg-paper border border-line rounded-2xl p-7 md:p-8">
+            <p className="eyebrow mb-5">If this is you</p>
+            <ul className="space-y-4">
+              {signals.map((signal) => (
+                <li
+                  key={signal}
+                  className="flex items-start gap-3 text-sm text-ink-soft leading-relaxed"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0" />
+                  <span>{signal}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="text-sm text-muted mt-7 pt-6 border-t border-line leading-relaxed">
+              We count these before changing anything. If the numbers don&apos;t
+              support the fix, we&apos;ll say so.
+            </p>
+          </aside>
+        </div>
+
+        <section className="mt-20 md:mt-28">
+          <div className="max-w-2xl">
+            <p className="eyebrow mb-4">The work</p>
+            <h2 className="font-display text-3xl md:text-5xl font-medium text-ink">
+              In this order.
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6 mt-10">
+            {steps.map((step) => (
+              <div
+                key={step.n}
+                className="bg-paper border border-line rounded-2xl p-7"
+              >
+                <span className="font-display text-sm text-accent">
+                  {step.n}
+                </span>
+                <h3 className="font-display text-xl font-medium text-ink mt-3">
+                  {step.title}
+                </h3>
+                <p className="text-muted mt-2 leading-relaxed">{step.body}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-16 rounded-3xl bg-ink px-7 py-12 md:px-12">
+          <div className="max-w-2xl">
+            <h2 className="font-display text-3xl md:text-4xl font-medium text-bone">
+              Your next enquiry is already calling.
+            </h2>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-[#102032] text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-[#102032]/90 transition-colors"
+              className="inline-flex items-center gap-2 bg-bone text-ink px-7 py-3.5 rounded-full font-medium mt-7 hover:bg-white transition-colors"
             >
-              Book Free Consultation <ArrowRight className="w-6 h-6" />
+              Book a free call
+              <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-
-          <div className="bg-white rounded-3xl p-8 shadow-lg">
-            <h2 className="text-2xl font-bold text-[#102032] mb-6">Patient Experience Mastery</h2>
-            <div className="space-y-6">
-              <div className="flex gap-4">
-                <div className="bg-[#6E2230]/10 p-3 rounded-xl h-fit">
-                  <Phone className="w-6 h-6 text-[#6E2230]" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-[#102032] mb-2">Phone Excellence</h3>
-                  <p className="text-gray-600 text-sm">
-                    Every phone call is an opportunity. We develop scripts that convert inquiries into appointments at higher rates.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <div className="bg-[#102032]/10 p-3 rounded-xl h-fit">
-                  <Users className="w-6 h-6 text-[#102032]" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-[#102032] mb-2">Seamless Onboarding</h3>
-                  <p className="text-gray-600 text-sm">
-                    First impressions matter. Create a patient journey that wows from first contact through first visit and beyond.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <div className="bg-[#6E2230]/10 p-3 rounded-xl h-fit">
-                  <Star className="w-6 h-6 text-[#6E2230]" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-[#102032] mb-2">Reviews & Referrals</h3>
-                  <p className="text-gray-600 text-sm">
-                    Build your online reputation systematically. Turn happy patients into your biggest marketing asset.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-16 bg-[#6E2230] rounded-3xl p-8 md:p-12 text-white">
-          <h2 className="text-3xl font-bold mb-6">Elevate the patient experience</h2>
-          <p className="text-xl mb-8 opacity-90">
-            Turn one-time visitors into lifelong patients who refer their friends and family.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-white text-[#6E2230] px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/90 transition-colors"
-          >
-            Start Your Transformation <ArrowRight className="w-6 h-6" />
-          </Link>
-        </div>
+        </section>
       </div>
     </main>
   );

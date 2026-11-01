@@ -12,17 +12,19 @@ const Hero = () => {
           <p className="eyebrow">Dental Practice Consulting · Melbourne</p>
           <span className="accent-rule" />
 
-          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] leading-[1.02] font-medium text-ink mt-5">
-            Where dental
+          <h1 className="font-display text-[2.6rem] sm:text-5xl md:text-6xl lg:text-[4.4rem] leading-[1.03] font-medium text-ink mt-5">
+            More booked patients.
             <br />
-            practices{" "}
-            <span className="italic text-accent">grow.</span>
+            Less admin.{" "}
+            <span className="italic text-accent">In 90 days.</span>
           </h1>
 
           <p className="text-lg md:text-xl text-muted max-w-xl mt-7 leading-relaxed">
-            We implement the systems, technology and training your practice
-            needs to grow: AI automation, patient experience and team
-            capability, delivered and measured in 90 days.
+            We find where your practice is leaking enquiries — the calls that
+            ring out, the quotes nobody follows up, the recall list nobody
+            works — then fix it with your team: automation for the repetitive
+            work, a fractional practice manager instead of another full-time
+            salary, and a front desk trained to a standard.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mt-9">
@@ -30,26 +32,31 @@ const Hero = () => {
               href="/contact"
               className="inline-flex items-center justify-center gap-2 bg-accent text-white px-7 py-3.5 rounded-full font-medium hover:bg-accent/90 transition-colors"
             >
-              Book a Free Call
+              Book a free call
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              href="#how-it-works"
+              href="#leaks"
               className="inline-flex items-center justify-center gap-2 border border-ink/25 text-ink px-7 py-3.5 rounded-full font-medium hover:border-ink hover:bg-ink hover:text-white transition-colors"
             >
-              See how it works
+              See where you&apos;re leaking
             </Link>
           </div>
 
-          {/* credential row */}
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-10 pt-7 border-t border-line text-sm text-muted">
-            <span className="text-ink font-medium">Tech &amp; AI</span>
-            <span className="text-line">·</span>
-            <span className="text-ink font-medium">Customer Experience</span>
-            <span className="text-line">·</span>
-            <span className="text-ink font-medium">Training</span>
-            <span className="hidden sm:inline text-line">·</span>
-            <span className="text-muted">Results in 90 days</span>
+          <p className="text-sm text-muted mt-4">
+            15 minutes, no pitch. Prefer no call? Ask for the one-page summary
+            instead and I&apos;ll email it.
+          </p>
+
+          {/* credibility row */}
+          <div className="mt-9 pt-7 border-t border-line text-sm">
+            <p className="text-ink-soft">
+              <span className="font-medium text-ink">Dr Vrinda Vashisht</span>{" "}
+              — dental surgeon and practice manager
+            </p>
+            <p className="text-muted mt-1">
+              Melbourne based · working with practices across VIC, NSW &amp; QLD
+            </p>
           </div>
         </div>
 

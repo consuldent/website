@@ -1,15 +1,18 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, CheckCircle } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Services - Consuldent",
   description:
-    "Dental practice consulting services: Tech & AI, Customer Experience, and Training. PMS optimisation, AI chatbots, phone scripts, team training. Results in 90 days.",
+    "Dental practice consulting services: fractional practice management, Tech & AI, Customer Experience, and Training. Fixed fee, month to month, we implement.",
+  alternates: {
+    canonical: "/services",
+  },
   openGraph: {
     title: "Services - Consuldent",
     description:
-      "Dental practice consulting services: Tech & AI, Customer Experience, and Training. Results in 90 days.",
+      "Dental practice consulting services: fractional practice management, Tech & AI, Customer Experience, Training. We implement, not just advise.",
     url: "https://consuldent.com.au/services",
   },
 };
@@ -17,160 +20,225 @@ export const metadata: Metadata = {
 const services = [
   {
     id: 1,
+    number: "01",
     title: "Tech & AI",
-    description: "Transform your dental practice with cutting-edge technology. From PMS optimisation to AI chatbots, we implement systems that save time and reduce costs.",
+    lede: "Your systems should give your team time back, not one more thing to maintain.",
     features: [
-      "Practice Management System (PMS) Optimisation",
-      "Website & Marketing Audit",
-      "AI Chatbots for Patient Inquiries",
-      "Automated Recall Systems",
-      "Cloud Migration & Security",
-      "Workflow Automation",
+      "Practice Management System (PMS) optimisation",
+      "AI chat for patient enquiries",
+      "Automated recall and reactivation",
+      "Cloud migration and security",
+      "Workflow automation",
+      "Website and marketing audit",
     ],
-    color: "#102032",
     link: "/services/tech-ai",
   },
   {
     id: 2,
+    number: "02",
     title: "Customer Experience",
-    description: "Create exceptional patient journeys. We design the systems that turn first-time visitors into loyal patients who refer others.",
+    lede: "Most practices don't have a lead problem. They have a conversion problem.",
     features: [
-      "Phone Script Development",
-      "Patient Onboarding Systems",
-      "Treatment Presentation Frameworks",
-      "Google Business Optimisation",
-      "Review & Referral Programs",
+      "Phone scripts and call handling",
+      "Patient onboarding systems",
+      "Treatment presentation frameworks",
+      "Google Business Profile",
+      "Review and referral programs",
+      "Recall scripting",
     ],
-    color: "#6E2230",
     link: "/services/customer-experience",
   },
   {
     id: 3,
+    number: "03",
     title: "Training",
-    description: "Build a team that delivers. Virtual and on-site training for every role in your dental practice.",
+    lede: "A standard only exists if every person in the practice can repeat it.",
     features: [
-      "Front Desk Training",
-      "Practice Manager Training",
-      "Clinical Team Training",
-      "Leadership Development",
-      "Custom Training Programs",
+      "Front desk training",
+      "Practice manager coaching",
+      "Clinical team training",
+      "Leadership development",
+      "Custom programs, virtual or on-site",
+      "Hiring and onboarding standards",
     ],
-    color: "#102032",
     link: "/services/training",
   },
 ];
 
-interface Service {
-  id: number;
-  title: string;
-  description: string;
-  features: string[];
-  color: string;
-  link: string;
-}
+const models = [
+  {
+    name: "Fractional Practice Manager",
+    duration: "Month to month",
+    description:
+      "A senior practice manager on your roster part-time, with automation and front-desk training built in. Replaces the next full-time admin salary instead of adding one.",
+    cta: "Check availability",
+    href: "/contact?model=fractional",
+    featured: true,
+  },
+  {
+    name: "Audit",
+    duration: "Two weeks",
+    description:
+      "A measured picture of where the leaks are, what they're worth, and what to fix first.",
+    cta: "Start with an audit",
+    href: "/contact?model=audit",
+    featured: false,
+  },
+  {
+    name: "Transformation",
+    duration: "Six months",
+    description:
+      "Implementation across your two or three biggest constraints, with your team trained to hold the change.",
+    cta: "Talk about transformation",
+    href: "/contact?model=transformation",
+    featured: false,
+  },
+  {
+    name: "Scale & Optimise",
+    duration: "Twelve months",
+    description:
+      "An ongoing partnership once the basics hold. New sites, new systems, steady review.",
+    cta: "Talk about a partnership",
+    href: "/contact?model=scale",
+    featured: false,
+  },
+];
 
 export default function ServicesPage() {
   return (
-    <main className="bg-[#F5F0E8]">
-      <div className="container mx-auto py-16 px-4">
+    <main className="bg-bone">
+      <div className="container mx-auto px-4 py-16 md:py-24">
         {/* Header */}
-        <div className="mb-16">
-<h1 className="text-5xl md:text-8xl font-bold text-[#102032] mb-6">
-            Dental Services
+        <div className="max-w-3xl animate-fade-in-up">
+          <p className="eyebrow mb-5">Services</p>
+          <span className="accent-rule mb-6" />
+          <h1 className="font-display text-5xl md:text-7xl font-medium text-ink leading-[1.03]">
+            What we actually fix.
           </h1>
-          <p className="text-xl md:text-2xl text-gray-700 max-w-3xl">
-            Everything your dental practice needs to grow: from technology implementation to team training.
+          <p className="text-xl text-muted mt-6 leading-relaxed">
+            Three disciplines, one accountable partner. We start with the
+            constraint costing you the most, fix it, then move to the next.
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="space-y-12">
-          {services.map((service, index) => (
-            <div
+        {/* Services */}
+        <div className="grid lg:grid-cols-3 gap-6 mt-14">
+          {services.map((service) => (
+            <article
               key={service.id}
-              className="rounded-3xl p-8 lg:p-12"
-              style={{ backgroundColor: service.color }}
+              className="bg-paper border border-line rounded-2xl p-7 md:p-8 flex flex-col hover:border-ink/30 transition-colors"
             >
-              <div className="lg:flex gap-12">
-                <div className="lg:w-1/3 mb-8 lg:mb-0">
-                  <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-                    {service.title}
-                  </h2>
-                  <p className="text-lg text-white/80 leading-relaxed">
-                    {service.description}
-                  </p>
-                  <Link
-                    href={service.link}
-                    className="inline-flex items-center gap-2 mt-6 text-white font-semibold hover:underline"
-                  >
-                    Learn more <ArrowRight className="w-5 h-5" />
-                  </Link>
-                </div>
-                <div className="lg:w-2/3">
-                  <ul className="space-y-4">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-3 text-white">
-                        <CheckCircle className="w-6 h-6 mt-0.5 flex-shrink-0" />
-                        <span className="text-lg">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              <div className="flex items-center justify-between">
+                <span className="eyebrow !text-accent">{service.number}</span>
+                <ArrowUpRight className="w-4 h-4 text-muted" />
               </div>
-            </div>
+              <h2 className="font-display text-2xl md:text-3xl font-medium text-ink mt-4">
+                {service.title}
+              </h2>
+              <p className="text-muted mt-3 leading-relaxed">{service.lede}</p>
+
+              <ul className="mt-6 space-y-2.5 flex-1">
+                {service.features.map((feature) => (
+                  <li
+                    key={feature}
+                    className="flex items-start gap-2.5 text-sm text-ink-soft"
+                  >
+                    <Check
+                      className="w-4 h-4 text-accent mt-0.5 shrink-0"
+                      strokeWidth={2.5}
+                    />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <Link
+                href={service.link}
+                className="luxury-link inline-flex items-center gap-1.5 mt-7 text-sm font-medium text-accent w-fit"
+              >
+                See what&apos;s involved
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </article>
           ))}
         </div>
 
-        {/* Models Section */}
-        <div className="mt-20">
-          <h2 className="text-3xl md:text-5xl font-bold text-[#102032] mb-8">
-            Engagement Models
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-2xl p-8 shadow-lg">
-              <h3 className="text-xl font-bold text-[#102032] mb-2">Audit</h3>
-              <p className="text-gray-600 mb-6">Comprehensive analysis of your practice with actionable recommendations.</p>
-              <Link
-                href="/contact?model=audit"
-                className="flex items-center justify-center gap-2 border-2 border-[#102032] text-[#102032] p-3 rounded-xl font-semibold hover:bg-[#102032] hover:text-white transition-colors"
-              >
-                Book an Audit <ArrowRight className="w-5 h-5" />
-              </Link>
-            </div>
-            <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-[#6E2230]">
-              <div className="bg-[#6E2230] text-white text-sm font-semibold px-3 py-1 rounded-full inline-block mb-4">Most Popular</div>
-              <h3 className="text-xl font-bold text-[#102032] mb-2">Transformation</h3>
-              <p className="text-gray-600 mb-6">6-month comprehensive engagement with implementation and training.</p>
-              <Link
-                href="/contact?model=transformation"
-                className="flex items-center justify-center gap-2 border-2 border-[#6E2230] text-[#6E2230] p-3 rounded-xl font-semibold hover:bg-[#6E2230] hover:text-white transition-colors"
-              >
-                Start Transformation <ArrowRight className="w-5 h-5" />
-              </Link>
-            </div>
-            <div className="bg-white rounded-2xl p-8 shadow-lg">
-              <h3 className="text-xl font-bold text-[#102032] mb-2">Scale & Optimise</h3>
-              <p className="text-gray-600 mb-6">12-month partnership for sustained growth and optimisation.</p>
-              <Link
-                href="/contact?model=scale"
-                className="flex items-center justify-center gap-2 border-2 border-[#102032] text-[#102032] p-3 rounded-xl font-semibold hover:bg-[#102032] hover:text-white transition-colors"
-              >
-                Scale with Us <ArrowRight className="w-5 h-5" />
-              </Link>
-            </div>
+        {/* Engagement models */}
+        <section className="mt-24 md:mt-32">
+          <div className="max-w-2xl">
+            <p className="eyebrow mb-4">Ways to work together</p>
+            <span className="accent-rule mb-6" />
+            <h2 className="font-display text-3xl md:text-5xl font-medium text-ink">
+              Start as small as you like.
+            </h2>
+            <p className="text-lg text-muted mt-4 leading-relaxed">
+              Every engagement is scoped and quoted in writing before it starts.
+              You&apos;ll know the number before you commit to anything.
+            </p>
           </div>
-        </div>
+
+          <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6 mt-10">
+            {models.map((model) => (
+              <div
+                key={model.name}
+                className={`bg-paper border rounded-2xl p-7 flex flex-col ${
+                  model.featured ? "border-accent" : "border-line"
+                }`}
+              >
+                {model.featured ? (
+                  <span className="self-start bg-accent text-white text-xs font-medium px-3 py-1 rounded-full mb-4">
+                    Most chosen
+                  </span>
+                ) : (
+                  <span className="text-xs text-muted mb-4">
+                    {model.duration}
+                  </span>
+                )}
+                {model.featured && (
+                  <span className="text-xs text-muted mb-2">
+                    {model.duration}
+                  </span>
+                )}
+                <h3 className="font-display text-2xl font-medium text-ink">
+                  {model.name}
+                </h3>
+                <p className="text-muted mt-3 leading-relaxed flex-1">
+                  {model.description}
+                </p>
+                <Link
+                  href={model.href}
+                  className={`inline-flex items-center justify-center gap-2 mt-7 px-6 py-3 rounded-full text-sm font-medium transition-colors ${
+                    model.featured
+                      ? "bg-accent text-white hover:bg-accent/90"
+                      : "border border-ink/25 text-ink hover:bg-ink hover:text-white"
+                  }`}
+                >
+                  {model.cta}
+                </Link>
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* CTA */}
-        <div className="mt-20 text-center">
-          <p className="text-xl text-gray-700 mb-6">Not sure where to start? Let&apos;s talk about your practice.</p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-[#102032] text-white px-8 py-4 rounded-xl font-semibold text-lg"
-          >
-            Book a Free Call <ArrowRight className="w-6 h-6" />
-          </Link>
-        </div>
+        <section className="mt-20 rounded-3xl bg-ink px-7 py-12 md:px-12 md:py-16">
+          <div className="max-w-2xl">
+            <h2 className="font-display text-3xl md:text-5xl font-medium text-bone leading-[1.08]">
+              Not sure which one you need?
+            </h2>
+            <p className="text-bone/65 text-lg mt-4 leading-relaxed">
+              That&apos;s the normal starting point. The first job is
+              measurement, not a proposal.
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 bg-bone text-ink px-7 py-3.5 rounded-full font-medium mt-8 hover:bg-white transition-colors"
+            >
+              Book a free call
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </section>
       </div>
     </main>
   );

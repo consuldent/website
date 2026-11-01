@@ -13,22 +13,25 @@ const contents = [
     id: 1,
     image: "/image/content/loopimg3.png",
     video: "/videos/content/loop3.mp4",
-    title: "Transformation that scales",
+    title: "The enquiry gets booked",
     label: "Transformation",
+    note: "A front desk that offers a time instead of taking a message.",
   },
   {
     id: 2,
     image: "/image/content/loopimg2.png",
     video: "/videos/content/loop2.mp4",
-    title: "Systems that work while you sleep",
+    title: "Follow-up that runs itself",
     label: "Automation",
+    note: "Recalls and unbooked treatment chased without anyone remembering to.",
   },
   {
     id: 3,
     image: "/image/content/loopimg1.png",
     video: "/videos/content/loop1.mp4",
-    title: "Front desk trained, patients converted",
+    title: "Everyone answers the same way",
     label: "Training",
+    note: "One standard, taught in the room, held to afterwards.",
   },
 ];
 
@@ -93,16 +96,16 @@ const Content = () => {
     <section ref={sectionRef} className="container mx-auto py-20 md:py-28 px-4">
       <div className="content-title flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
         <div>
-          <p className="eyebrow mb-4">Proof, not promises</p>
+          <p className="eyebrow mb-4">What actually changes</p>
           <h2 className="font-display text-4xl md:text-6xl font-medium text-ink leading-[1.05]">
-            Results you can measure.
+            The first things we fix.
           </h2>
         </div>
         <Link
-          href="/about"
-          className="luxury-link inline-flex items-center gap-1.5 text-sm font-medium text-ink"
+          href="/contact"
+          className="inline-flex items-center gap-2 bg-accent text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-accent/90 transition-colors"
         >
-          See our approach
+          Book a free call
           <ArrowRight className="w-4 h-4" />
         </Link>
       </div>
@@ -145,6 +148,9 @@ const Content = () => {
               <h3 className="font-display text-2xl md:text-3xl font-medium text-bone leading-tight">
                 {content.title}
               </h3>
+              <p className="text-sm text-bone/70 mt-2 leading-snug">
+                {content.note}
+              </p>
             </div>
 
             <span className="absolute top-4 right-4 w-9 h-9 rounded-full bg-bone text-ink flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">

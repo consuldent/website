@@ -69,7 +69,7 @@ const Navbar = () => {
             href="/contact"
             className="hidden md:inline-flex items-center gap-2 bg-accent text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-accent/90 transition-colors"
           >
-            Book a Free Call
+            Book a free call
           </Link>
 
           {/* Mobile toggle */}
@@ -118,7 +118,7 @@ const Navbar = () => {
               onClick={() => setOpenMobileBar(false)}
               className="mt-6 inline-flex items-center justify-center bg-accent text-white px-6 py-4 rounded-full font-medium"
             >
-              Book a Free Call
+              Book a free call
             </Link>
           </div>
         </div>

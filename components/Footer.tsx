@@ -20,22 +20,25 @@ const Footer = () => {
         <div className="py-20 md:py-28 text-center max-w-3xl mx-auto">
           <p className="eyebrow !text-accent-soft mb-5">Start the conversation</p>
           <h2 className="font-display text-4xl md:text-6xl font-medium leading-[1.05]">
-            Ready to grow your practice?
+            Find out what it&apos;s costing you.
           </h2>
+          <p className="text-bone/60 text-lg mt-5">
+            A free 30-minute call. No pitch, no obligation.
+          </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-9">
             <Link
               href="/contact"
               className="inline-flex items-center justify-center gap-2 bg-accent text-white px-7 py-3.5 rounded-full font-medium hover:bg-accent/90 transition-colors"
             >
-              Book a Free Call
+              Book a free call
               <ArrowUpRight className="w-4 h-4" />
             </Link>
             <Link
-              href="mailto:support@consuldent.com.au"
+              href="mailto:vrinda@consuldent.com.au"
               className="inline-flex items-center gap-2 border border-bone/25 px-7 py-3.5 rounded-full font-medium hover:bg-bone hover:text-ink transition-colors"
             >
               <Mail className="w-4 h-4" />
-              support@consuldent.com.au
+              vrinda@consuldent.com.au
             </Link>
           </div>
         </div>
@@ -104,12 +107,6 @@ const Footer = () => {
                 <p className="text-xs uppercase tracking-[0.14em] text-bone/40 mb-1">
                   Contact
                 </p>
-                <Link
-                  href="mailto:support@consuldent.com.au"
-                  className="luxury-link text-sm text-bone/75 hover:text-bone w-fit"
-                >
-                  support@consuldent.com.au
-                </Link>
                 <Link
                   href="mailto:vrinda@consuldent.com.au"
                   className="luxury-link text-sm text-bone/75 hover:text-bone w-fit"

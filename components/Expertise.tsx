@@ -11,6 +11,7 @@ const expertise = [
     subTitle: "Modernise your practice systems.",
     description:
       "PMS optimisation, AI chatbots, automation, cloud migration, cybersecurity, and integrations that actually stick.",
+    href: "/services/tech-ai",
     video: "/videos/expertise1.mp4",
   },
   {
@@ -20,6 +21,7 @@ const expertise = [
     subTitle: "Convert more, lose less.",
     description:
       "Phone scripts, patient onboarding, treatment presentation, recall systems, Google Business, and reviews that build your reputation.",
+    href: "/services/customer-experience",
     video: "/videos/expertise2.mp4",
   },
   {
@@ -29,6 +31,7 @@ const expertise = [
     subTitle: "Your team, finally performing.",
     description:
       "Front desk, practice manager, nurse, and dentist training. Virtual or on-site. Your whole team leveled up.",
+    href: "/services/training",
     video: "/videos/expertise3.mp4",
   },
   {
@@ -38,6 +41,7 @@ const expertise = [
     subTitle: "Measure everything that matters.",
     description:
       "Every system we build is tracked. You see exactly what's working, what's not, and where the revenue is.",
+    href: "/services",
     video: "/videos/expertise4.mp4",
   },
 ];
@@ -92,7 +96,7 @@ const Expertise = () => {
               </p>
 
               <Link
-                href="/services"
+                href={item.href}
                 className="luxury-link inline-flex items-center gap-1.5 mt-6 text-sm font-medium text-accent"
               >
                 Learn more

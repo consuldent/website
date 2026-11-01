@@ -1,257 +1,233 @@
-'use client';
+import { Metadata } from "next";
+import Link from "next/link";
+import { Check, Mail, MapPin } from "lucide-react";
+import ContactForm from "@/components/ContactForm";
 
-import { useState } from 'react';
-import { Mail, MapPin, ArrowRight } from 'lucide-react';
-import { db } from '@/lib/firebase';
-import { collection, addDoc } from 'firebase/firestore/lite';
+export const metadata: Metadata = {
+  title: "Book a free call | Consuldent",
+  description:
+    "A free 15-minute call with Dr Vrinda Vashisht, or ask for a one-page summary of the three things she'd change first. No pitch, no obligation.",
+  alternates: {
+    canonical: "/contact",
+  },
+  openGraph: {
+    title: "Book a Free Call | Consuldent",
+    description:
+      "A free 15-minute call with a dentist who has also run the front desk - or a one-page summary, no call needed.",
+    url: "https://consuldent.com.au/contact",
+  },
+};
+
+const faqs = [
+  {
+    q: "What does the free call actually cost?",
+    a: "Nothing, and there's no obligation afterwards. It's 15 minutes with Dr Vrinda. You leave with a clear view of what you'd fix first, whether or not you work with us. Rather not talk at all? Ask for the one-page summary and I'll do it by email.",
+  },
+  {
+    q: "How quickly will we see something change?",
+    a: "The first fixes usually land inside three weeks. We track the numbers we changed against the numbers before, and review them with you at 90 days.",
+  },
+  {
+    q: "Do you work with our practice manager, or around them?",
+    a: "With them. We train and support the person you already have. We're not there to replace your team, and we don't hire into it.",
+  },
+  {
+    q: "We're outside Melbourne. Can you still help?",
+    a: "Yes. Most of the work is remote, with on-site days in Victoria where they help. We work with practices across VIC, NSW and Queensland.",
+  },
+];
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How long until I see results?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Most dental practices see measurable results within 90 days. Technology implementations typically show immediate efficiency gains, while team training takes effect within the first few weeks."
-      }
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.a,
     },
-    {
-      "@type": "Question",
-      "name": "What size practice do you work with?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "We work with dental practices of all sizes, from single-chair practices to multi-location operations. Our programs are tailored to your specific needs and growth goals."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you offer remote consultations?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes! We offer virtual consultations and training for dental practices across Australia. On-site engagements are available for Melbourne-based practices."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What's included in the initial audit?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Our comprehensive audit covers your PMS setup, workflows, patient journey, team performance, and technology stack. You'll receive a detailed report with actionable recommendations."
-      }
-    }
-  ]
+  })),
 };
 
-export default function ContactPage() {
-  const [successMessage, setSuccessMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [loading, setLoading] = useState(false);
+const modelLabels: Record<string, string> = {
+  audit: "Practice audit",
+  transformation: "Transformation engagement",
+  scale: "Scale & optimise",
+  fractional: "Fractional practice management",
+};
 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    practiceName: '',
-    message: '',
-    host: 'consuldent.com.au',
-    type: 'contact',
-    created: new Date(),
-  });
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [event.target.name]: event.target.value });
-  };
-
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    try {
-      setLoading(true);
-      setErrorMessage('');
-      setSuccessMessage('');
-
-      const colRef = collection(db, 'webForms');
-      await addDoc(colRef, {
-        ...formData,
-        created: new Date().toISOString(),
-      });
-
-      setSuccessMessage('Thank you for your inquiry. We will review your message and be in touch within 24 hours.');
-
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        practiceName: '',
-        message: '',
-        host: 'consuldent.com.au',
-        type: 'contact',
-        created: new Date(),
-      });
-    } catch (e) {
-      console.error('Error adding document: ', e);
-      setErrorMessage('Something went wrong. Please email us directly at support@consuldent.com.au');
-    }
-    setLoading(false);
-  };
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ model?: string | string[] }>;
+}) {
+  const params = await searchParams;
+  const rawModel = Array.isArray(params?.model)
+    ? params.model[0]
+    : params?.model;
+  const intent = rawModel ? modelLabels[rawModel] ?? rawModel : undefined;
 
   return (
-    <main className="bg-[#F5F0E8]">
+    <main className="bg-bone">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <div className="container mx-auto py-16 px-4">
+      <div className="container mx-auto px-4 py-16 md:py-24">
         {/* Header */}
-        <div className="mb-16">
-          <h1 className="text-5xl md:text-8xl font-bold text-[#102032] mb-6">
-            Get in Touch
+        <div className="max-w-3xl animate-fade-in-up">
+          <p className="eyebrow mb-5">Book a call</p>
+          <span className="accent-rule mb-6" />
+          <h1 className="font-display text-5xl md:text-7xl font-medium text-ink leading-[1.03]">
+            Book your free call.
           </h1>
-          <p className="text-xl md:text-2xl text-gray-700 max-w-3xl">
-            Ready to transform your dental practice? Let&apos;s talk about what you need and how we can help.
+          <p className="text-xl text-muted mt-6 leading-relaxed">
+            15 minutes, no pitch. Tell me what&apos;s not working and I&apos;ll
+            tell you what I&apos;d fix first — even if that&apos;s all you take
+            away.
           </p>
-        </div>
-
-        {/* Contact Info & Form */}
-        <div className="grid md:grid-cols-2 gap-12 mb-16">
-          <div className="space-y-8">
-            <div className="flex items-start gap-4">
-              <div className="bg-[#102032] p-3 rounded-xl">
-                <Mail className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-[#102032] mb-1">Email</h3>
-                <a href="mailto:support@consuldent.com.au" className="text-gray-700 hover:text-[#102032] transition-colors">
-                  support@consuldent.com.au
-                </a>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="bg-[#6E2230] p-3 rounded-xl">
-                <MapPin className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-[#102032] mb-1">Location</h3>
-                <p className="text-gray-700">Melbourne, VIC, Australia</p>
-                <p className="text-sm text-gray-500 mt-1">Serving dental practices across Victoria, with capability to work with NSW and QLD practices.</p>
-              </div>
-            </div>
-
-            {/* Contact Form */}
-            <form onSubmit={handleSubmit} className="mt-8 space-y-4">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Your Name *"
-                    className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#102032] bg-white"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div>
-                  <input
-                    type="tel"
-                    name="phone"
-                    placeholder="Phone Number *"
-                    className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#102032] bg-white"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-              </div>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email Address *"
-                    className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#102032] bg-white"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div>
-                  <input
-                    type="text"
-                    name="practiceName"
-                    placeholder="Practice Name"
-                    className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#102032] bg-white"
-                    value={formData.practiceName}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-              <div>
-                <textarea
-                  name="message"
-                  placeholder="How can we help your practice? *"
-                  rows={4}
-                  className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#102032] bg-white"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full px-6 py-4 bg-[#102032] text-white font-bold rounded-lg hover:bg-[#102032]/90 transition-colors disabled:opacity-50"
-                disabled={loading}
-              >
-                {loading ? 'Sending...' : 'Request Free Consultation'}
-              </button>
-              {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
-              {successMessage && (
-                <p className="text-[#6E2230] text-sm font-semibold">{successMessage}</p>
-              )}
-            </form>
-          </div>
-
-          {/* CTA Card */}
-          <div className="bg-white rounded-3xl p-8 shadow-lg h-fit">
-            <h2 className="text-2xl font-bold text-[#102032] mb-4">Book a Free Call</h2>
-            <p className="text-gray-600 mb-6">
-              Schedule a complimentary 30-minute call to discuss your dental practice challenges and explore how we can help.
+          <p className="text-muted mt-4 leading-relaxed max-w-xl">
+            Rather not get on a call at all? In the form, choose{" "}
+            <span className="text-ink font-medium">
+              &ldquo;Send me the one-page summary&rdquo;
+            </span>{" "}
+            and I&apos;ll email it without a call.
+          </p>
+          {intent && (
+            <p className="inline-flex items-center gap-2 mt-6 text-sm text-ink bg-paper border border-line rounded-full px-4 py-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+              Enquiring about: {intent}
             </p>
-            <a
-              href="mailto:support@consuldent.com.au?subject=Free%20Consultation%20Request&body=Hi%20Vrinda,%0A%0AI'd%20like%20to%20discuss%20how%20Consuldent%20can%20help%20my%20dental%20practice.%0A%0APractice%20Name:%0ALocation:%0ACurrent%20Challenges:%0A%0ALooking%20forward%20to%20hearing%20from%20you."
-              className="flex items-center justify-center gap-2 bg-[#102032] text-white p-4 rounded-xl font-semibold text-lg hover:bg-[#102032]/90 transition-colors"
-            >
-              Request Free Consultation <ArrowRight className="w-5 h-5" />
-            </a>
+          )}
+        </div>
+
+        {/* Form + context */}
+        <div className="grid md:grid-cols-12 gap-10 md:gap-14 mt-14 items-start">
+          <div className="md:col-span-5 space-y-9">
+            <div>
+              <p className="eyebrow mb-4">What happens on the call</p>
+              <ol className="space-y-5">
+                <li className="flex gap-4">
+                  <span className="font-display text-lg text-accent leading-none mt-1">
+                    01
+                  </span>
+                  <div>
+                    <p className="font-medium text-ink">You talk, mostly.</p>
+                    <p className="text-muted text-sm mt-1 leading-relaxed">
+                      What&apos;s breaking, what you&apos;ve already tried, what
+                      you&apos;d fix first if you had a spare month.
+                    </p>
+                  </div>
+                </li>
+                <li className="flex gap-4">
+                  <span className="font-display text-lg text-accent leading-none mt-1">
+                    02
+                  </span>
+                  <div>
+                    <p className="font-medium text-ink">
+                      I tell you what I&apos;d do.
+                    </p>
+                    <p className="text-muted text-sm mt-1 leading-relaxed">
+                      The specific changes I&apos;d make in your first 90 days,
+                      and what I&apos;d expect each one to move.
+                    </p>
+                  </div>
+                </li>
+                <li className="flex gap-4">
+                  <span className="font-display text-lg text-accent leading-none mt-1">
+                    03
+                  </span>
+                  <div>
+                    <p className="font-medium text-ink">You decide.</p>
+                    <p className="text-muted text-sm mt-1 leading-relaxed">
+                      If it&apos;s a fit, I&apos;ll send a written scope and fee.
+                      If it isn&apos;t, I&apos;ll say so.
+                    </p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+
+            <div className="pt-8 border-t border-line">
+              <p className="eyebrow mb-4">Who this is for</p>
+              <ul className="space-y-2.5">
+                {[
+                  "Owners doing their own admin after hours",
+                  "Practices where the front desk has become the bottleneck",
+                  "Practice managers who need systems, not another report",
+                ].map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 text-sm text-ink-soft"
+                  >
+                    <Check
+                      className="w-4 h-4 text-accent mt-0.5 shrink-0"
+                      strokeWidth={2.5}
+                    />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="pt-8 border-t border-line space-y-3 text-sm">
+              <p className="eyebrow">Prefer email</p>
+              <a
+                href="mailto:vrinda@consuldent.com.au"
+                className="flex items-center gap-2 text-ink hover:text-accent transition-colors"
+              >
+                <Mail className="w-4 h-4" />
+                vrinda@consuldent.com.au
+              </a>
+              <p className="flex items-center gap-2 text-muted">
+                <MapPin className="w-4 h-4" />
+                Melbourne · on-site in VIC, remote elsewhere
+              </p>
+            </div>
+          </div>
+
+          <div className="md:col-span-7">
+            <ContactForm intent={intent} />
           </div>
         </div>
 
-        {/* FAQ Section */}
-        <div className="mt-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-[#102032] mb-8">
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            <div className="bg-white rounded-2xl p-6">
-              <h3 className="text-xl font-semibold text-[#102032] mb-2">How long until I see results?</h3>
-              <p className="text-gray-600">Most dental practices see measurable results within 90 days. Technology implementations typically show immediate efficiency gains, while team training takes effect within the first few weeks.</p>
-            </div>
-            <div className="bg-white rounded-2xl p-6">
-              <h3 className="text-xl font-semibold text-[#102032] mb-2">What size practice do you work with?</h3>
-              <p className="text-gray-600">We work with dental practices of all sizes, from single-chair practices to multi-location operations. Our programs are tailored to your specific needs and growth goals.</p>
-            </div>
-            <div className="bg-white rounded-2xl p-6">
-              <h3 className="text-xl font-semibold text-[#102032] mb-2">Do you offer remote consultations?</h3>
-              <p className="text-gray-600">Yes! We offer virtual consultations and training for dental practices across Australia. On-site engagements are available for Melbourne-based practices.</p>
-            </div>
-            <div className="bg-white rounded-2xl p-6">
-              <h3 className="text-xl font-semibold text-[#102032] mb-2">What&apos;s included in the initial audit?</h3>
-              <p className="text-gray-600">Our comprehensive audit covers your PMS setup, workflows, patient journey, team performance, and technology stack. You&apos;ll receive a detailed report with actionable recommendations.</p>
-            </div>
+        {/* FAQ */}
+        <section className="mt-24 md:mt-32">
+          <div className="max-w-2xl">
+            <p className="eyebrow mb-4">Before you book</p>
+            <span className="accent-rule mb-6" />
+            <h2 className="font-display text-3xl md:text-5xl font-medium text-ink">
+              The questions people actually ask.
+            </h2>
           </div>
-        </div>
+
+          <div className="grid md:grid-cols-2 gap-6 mt-10">
+            {faqs.map((faq) => (
+              <div
+                key={faq.q}
+                className="bg-paper border border-line rounded-2xl p-7"
+              >
+                <h3 className="font-display text-xl font-medium text-ink">
+                  {faq.q}
+                </h3>
+                <p className="text-muted mt-3 leading-relaxed">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-muted mt-10">
+            Not sure what&apos;s wrong yet? That&apos;s the usual starting
+            point.{" "}
+            <Link
+              href="/services"
+              className="text-accent underline underline-offset-2"
+            >
+              See what we look at
+            </Link>
+            .
+          </p>
+        </section>
       </div>
     </main>
   );
