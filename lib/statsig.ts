@@ -206,6 +206,110 @@ export type GeoInfo = {
 const GEO_KEY = "consuldent_statsig_geo";
 const GEO_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
 
+/*
+ * Provider fallback chain. The site is fully static (no origin server we
+ * control), so "server fallback" here means falling back across alternate
+ * geo servers — ipapi.co's free tier is rate-limited per calling IP, and
+ * proxying through a single origin function would funnel ALL visitors
+ * through one shared quota and rate-limit the whole site faster. A
+ * per-visitor fallback to the next free provider degrades gracefully:
+ * each provider gets a 4s timeout, and one that returns 429 (or any
+ * non-OK) is placed in a short backoff stored in localStorage so repeat
+ * navigations don't immediately re-try the rate-limited endpoint.
+ */
+type GeoProvider = {
+  name: string;
+  url: string;
+  parse: (d: Record<string, unknown>) => { ip: string; city: string; region: string; country: string; countryCode: string; timezone: string } | null;
+};
+
+const GEO_PROVIDERS: GeoProvider[] = [
+  {
+    name: "ipapi.co",
+    url: "https://ipapi.co/json/",
+    parse: (d) =>
+      d.ip && d.country_code
+        ? {
+            ip: String(d.ip),
+            city: String(d.city ?? ""),
+            region: String(d.region ?? ""),
+            country: String(d.country_name ?? ""),
+            countryCode: String(d.country_code ?? ""),
+            timezone: String(d.timezone ?? ""),
+          }
+        : null,
+  },
+  {
+    name: "ipwho.is",
+    url: "https://ipwho.is/",
+    parse: (d) => {
+      if (!(d.ip && d.country_code) || d.success === false) return null;
+      const tz = d.timezone as Record<string, unknown> | undefined;
+      return {
+        ip: String(d.ip),
+        city: String(d.city ?? ""),
+        region: String(d.region ?? ""),
+        country: String(d.country ?? ""),
+        countryCode: String(d.country_code ?? ""),
+        timezone: String(tz?.id ?? ""),
+      };
+    },
+  },
+  {
+    name: "geojs.io",
+    url: "https://get.geojs.io/v1/ip/geo.json",
+    parse: (d) =>
+      d.ip && d.country_code
+        ? {
+            ip: String(d.ip),
+            city: String(d.city ?? ""),
+            region: String(d.region ?? ""),
+            country: String(d.country ?? ""),
+            countryCode: String(d.country_code ?? ""),
+            timezone: String(d.timezone ?? ""),
+          }
+        : null,
+  },
+  {
+    name: "freeipapi.com",
+    url: "https://free.freeipapi.com/api/json",
+    parse: (d) =>
+      d.ip && d.countryCode
+        ? {
+            ip: String(d.ip),
+            city: String(d.cityName ?? ""),
+            region: String(d.regionName ?? ""),
+            country: String(d.countryName ?? ""),
+            countryCode: String(d.countryCode ?? ""),
+            timezone: String(d.timezone ?? ""),
+          }
+        : null,
+  },
+];
+
+/* Backoff memory so we don't re-try a rate-limited provider on every nav. */
+const GEO_BACKOFF_KEY = "consuldent_statsig_geo_backoff";
+const PROVIDER_BACKOFF_MS = 60 * 60 * 1000; // 1h after a failure
+const CHAIN_BACKOFF_MS = 30 * 60 * 1000; // 30min when ALL providers fail
+
+function readGeoBackoff(): { providers: Record<string, number>; chain: number } {
+  try {
+    const raw = window.localStorage.getItem(GEO_BACKOFF_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch {
+    /* ignore */
+  }
+  return { providers: {}, chain: 0 };
+}
+
+function storeGeoBackoff(b: { providers: Record<string, number>; chain: number }) {
+  try {
+    window.localStorage.setItem(GEO_BACKOFF_KEY, JSON.stringify(b));
+  } catch {
+    /* ignore */
+  }
+}
+
 export function getGeoCache(): GeoInfo | null {
   try {
     const raw = window.localStorage.getItem(GEO_KEY);
@@ -230,35 +334,53 @@ function cacheGeo(info: GeoInfo) {
 }
 
 /**
- * Fetches low-resolution IP geo once per week and attaches it to the Statsig
- * user (ip, country, locale) + custom fields (city/region). Non-blocking and
- * fully silent on failure — analytics must never degrade the site.
+ * Fetches low-resolution IP geo once per week (falling back across alternate
+ * geo servers when the primary is rate-limited) and attaches it to the
+ * Statsig user (ip, country, locale) + custom fields (city/region).
+ * Non-blocking and fully silent on failure — analytics must never degrade
+ * the site.
  */
 export async function hydrateGeoIntoClient(client: StatsigClient) {
   let info = getGeoCache();
 
   if (!info) {
-    try {
-      const controller = new AbortController();
-      const timer = window.setTimeout(() => controller.abort(), 4000);
-      const res = await fetch("https://ipapi.co/json/", {
-        signal: controller.signal,
-      });
-      window.clearTimeout(timer);
-      if (!res.ok) return;
-      const data = (await res.json()) as Record<string, unknown>;
-      if (!data.ip || !data.country_code) return;
-      info = {
-        ip: String(data.ip),
-        city: String(data.city ?? ""),
-        region: String(data.region ?? ""),
-        country: String(data.country_name ?? ""),
-        countryCode: String(data.country_code ?? ""),
-        timezone: String(data.timezone ?? ""),
-      };
-      cacheGeo(info);
-    } catch {
-      return; // offline, blocked, rate-limited — silently skip
+    const backoff = readGeoBackoff();
+    const now = Date.now();
+    if (backoff.chain > now) return; // everything failed recently — sit out
+
+    for (const provider of GEO_PROVIDERS) {
+      if ((backoff.providers[provider.name] ?? 0) > now) continue;
+      try {
+        const controller = new AbortController();
+        const timer = window.setTimeout(() => controller.abort(), 4000);
+        const res = await fetch(provider.url, { signal: controller.signal });
+        window.clearTimeout(timer);
+        if (!res.ok) {
+          // 429 (rate-limited) or any other non-OK: back off this provider.
+          backoff.providers[provider.name] = now + PROVIDER_BACKOFF_MS;
+          storeGeoBackoff(backoff);
+          continue;
+        }
+        const data = (await res.json()) as Record<string, unknown>;
+        const parsed = provider.parse(data);
+        if (!parsed) {
+          backoff.providers[provider.name] = now + PROVIDER_BACKOFF_MS;
+          storeGeoBackoff(backoff);
+          continue;
+        }
+        info = parsed;
+        cacheGeo(info);
+        break;
+      } catch {
+        // offline, blocked, aborted — record failure and try the next one
+        backoff.providers[provider.name] = now + PROVIDER_BACKOFF_MS;
+        storeGeoBackoff(backoff);
+      }
+    }
+    if (!info) {
+      // Whole chain exhausted — stop retrying for a while.
+      storeGeoBackoff({ providers: backoff.providers, chain: now + CHAIN_BACKOFF_MS });
+      return;
     }
   }
 
