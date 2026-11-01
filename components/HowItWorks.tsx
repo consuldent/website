@@ -102,6 +102,7 @@ const HowItWorks = () => {
       <div className="mt-12">
         <Link
           href="/contact"
+          data-cta="homepage_how_it_works"
           className="inline-flex items-center gap-2 bg-accent text-white px-7 py-3.5 rounded-full font-medium hover:bg-accent/90 transition-colors"
         >
           Book a free call <ArrowRight className="w-4 h-4" />

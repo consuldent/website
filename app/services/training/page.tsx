@@ -93,6 +93,7 @@ export default function TrainingPage() {
             <div className="flex flex-col sm:flex-row sm:items-center gap-4 mt-10">
               <Link
                 href="/contact?model=transformation"
+                data-cta="svc_training_hero"
                 className="inline-flex items-center justify-center gap-2 bg-accent text-white px-7 py-3.5 rounded-full font-medium hover:bg-accent/90 transition-colors"
               >
                 Book a free call
@@ -153,9 +154,10 @@ export default function TrainingPage() {
           <div className="max-w-2xl">
             <h2 className="font-display text-3xl md:text-4xl font-medium text-bone">
               A standard nobody was taught isn&apos;t a standard.
-            </h2>
-            <Link
-              href="/contact"
+            </h2>              <Link
+                href="/contact"
+                data-cta="svc_training_bottom"
+
               className="inline-flex items-center gap-2 bg-bone text-ink px-7 py-3.5 rounded-full font-medium mt-7 hover:bg-white transition-colors"
             >
               Book a free call

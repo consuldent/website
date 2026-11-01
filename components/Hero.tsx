@@ -30,6 +30,7 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4 mt-9">
             <Link
               href="/contact"
+              data-cta="hero_primary"
               className="inline-flex items-center justify-center gap-2 bg-accent text-white px-7 py-3.5 rounded-full font-medium hover:bg-accent/90 transition-colors"
             >
               Book a free call

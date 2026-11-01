@@ -232,6 +232,7 @@ export default function ServicesPage() {
             </p>
             <Link
               href="/contact"
+              data-cta="services_overview_bottom"
               className="inline-flex items-center gap-2 bg-bone text-ink px-7 py-3.5 rounded-full font-medium mt-8 hover:bg-white transition-colors"
             >
               Book a free call

@@ -33,6 +33,7 @@ export default function MobileCTA() {
         <div className="bg-bone/95 backdrop-blur-md border-t border-line px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
           <Link
             href="/contact"
+            data-cta="mobile_sticky_bar"
             className="flex items-center justify-center gap-2 bg-accent text-white px-6 py-3 rounded-full font-medium w-full"
           >
             Book a free call

@@ -67,6 +67,7 @@ const Navbar = () => {
           {/* Desktop CTA */}
           <Link
             href="/contact"
+            data-cta="navbar_desktop"
             className="hidden md:inline-flex items-center gap-2 bg-accent text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-accent/90 transition-colors"
           >
             Book a free call
@@ -115,6 +116,7 @@ const Navbar = () => {
             ))}
             <Link
               href="/contact"
+              data-cta="navbar_mobile_menu"
               onClick={() => setOpenMobileBar(false)}
               className="mt-6 inline-flex items-center justify-center bg-accent text-white px-6 py-4 rounded-full font-medium"
             >

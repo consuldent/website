@@ -103,6 +103,7 @@ const Content = () => {
         </div>
         <Link
           href="/contact"
+          data-cta="homepage_bottom"
           className="inline-flex items-center gap-2 bg-accent text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-accent/90 transition-colors"
         >
           Book a free call

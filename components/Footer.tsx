@@ -23,11 +23,12 @@ const Footer = () => {
             Find out what it&apos;s costing you.
           </h2>
           <p className="text-bone/60 text-lg mt-5">
-            A free 30-minute call. No pitch, no obligation.
+            A free 15-minute call. No pitch, no obligation.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-9">
             <Link
               href="/contact"
+              data-cta="footer"
               className="inline-flex items-center justify-center gap-2 bg-accent text-white px-7 py-3.5 rounded-full font-medium hover:bg-accent/90 transition-colors"
             >
               Book a free call

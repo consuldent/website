@@ -1,9 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { db } from "@/lib/firebase";
 import { collection, addDoc } from "firebase/firestore/lite";
 import { ArrowRight, Check } from "lucide-react";
+import {
+  logContactFormStarted,
+  logContactFormSubmitted,
+} from "@/lib/statsig";
 
 export type Purpose = "call" | "callback" | "summary" | "question" | "training";
 
@@ -97,6 +101,14 @@ export default function ContactForm({ intent }: Props) {
   const [sentData, setSentData] = useState(initialForm);
   const [errorMessage, setErrorMessage] = useState("");
 
+  // First meaningful interaction with the form = top-of-funnel signal.
+  const formStartedRef = useRef(false);
+  const handleFirstInteraction = () => {
+    if (formStartedRef.current) return;
+    formStartedRef.current = true;
+    logContactFormStarted();
+  };
+
   const phoneRequired = needsPhone.includes(formData.purpose as Purpose);
 
   const handleChange = (
@@ -105,6 +117,7 @@ export default function ContactForm({ intent }: Props) {
     >
   ) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
+    if (!formStartedRef.current) handleFirstInteraction();
   };
 
   const mailtoBody = (data: typeof initialForm) =>
@@ -152,6 +165,10 @@ export default function ContactForm({ intent }: Props) {
       setSentData(formData);
       setSent(true);
       setFormData(initialForm);
+      logContactFormSubmitted({
+        formPurpose: formData.purpose || "unset",
+        hasPhone: formData.phone ? "yes" : "no",
+      });
     } catch (e) {
       console.error("Error adding document: ", e);
       setErrorMessage(
